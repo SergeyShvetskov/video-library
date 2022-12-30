@@ -11,7 +11,7 @@ export default class NewsApiService {
                 const URL = 'https://api.themoviedb.org/3/search/movie';
                 const KEY = 'a79202f0028fac6a27982a88fb1459a6';
                               
-                const responseAxios = await axios.get(`${URL}?key=${KEY}&query=${this.searchQuery}&page=${this.page}`);
+                const responseAxios = await axios.get(`${URL}?api_key=${KEY}&query=${this.searchQuery}&page=${this.page}`);
                 try {
                         console.log(responseAxios);
                         const response = responseAxios.data;
