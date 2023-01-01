@@ -1,7 +1,78 @@
-.header {
+
+.header{
+   
   padding-top: 40px;
   padding-bottom: 80px;
+  background-color: rgba(0, 0, 0, 0.56);
+  background-image: url(../images/header-320/background-1-min.jpg);
+  background-size: cover;
 }
+
+.header-logo__text {
+  display: none;
+}
+
+
+@media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
+screen and (min-resolution: 192dpi) and (max-width: 767px),
+screen and(min-resolution: 2dppx) and (max-width: 767px) {
+  .header {
+    background-image: url(../images/header-320/background-1@2x-min.jpg);
+  }
+}
+
+
+
+
+
+
+
+
+@media screen and (min-width: 768px) {
+  .header {
+    background-image: url(../images/header-768/background-1-min.jpg);
+  }
+
+  .header-logo{
+    display: flex;
+  }
+
+    .header-logo__text {
+      display: flex;
+    }
+}
+
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
+screen and (min-resolution: 192dpi) and (min-width: 768px),
+screen and (min-resolution: 2dppx) and (min-width: 768px) {
+  .header {
+    background-image: url(../images/header-768/background-1@2x-min.jpg);
+  }
+}
+
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+
+ 
+  .header {
+   background-image: url(../images/header-1280/background-1-min.jpg);
+
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 1200px),
+screen and (min-resolution: 192dpi) and (min-width: 1200px),
+screen and (min-resolution: 2dppx) and (min-width: 1200px) {
+  .header {
+    background-image: url(../images/header-1280/background-1@2x-min.jpg);
+  }
+}
+
+
 
 .header-wrapper{
   display: flex;
@@ -30,3 +101,6 @@
   justify-content: center;
 
 }
+
+
+

@@ -4,6 +4,7 @@ import NewsApiService from './fetchMove';
 import allGenres from './genres.json';
 
 
+
 const refs = {
     searchForm: document.querySelector('.header-search__wrapper'),
     cardlist: document.querySelector('.cards__list'),
