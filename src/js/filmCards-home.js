@@ -1,5 +1,6 @@
 import allGenres from './genres.json';
 
+
 const cardsListLibrary = document.querySelector('.cards__list--library');
 const cardsList = document.querySelector('.cards__list');
 
@@ -72,3 +73,4 @@ export {
   cardsList,
   cardsListLibrary,
 };
+
