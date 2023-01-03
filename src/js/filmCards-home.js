@@ -1,11 +1,10 @@
 import allGenres from './genres.json';
 // import NewsApiService from './fetchMove';
 import FetchData from './fetchMove';
-import { pagination } from './pagination';
+// import { pagination } from './pagination';
 
 const cardsListLibrary = document.querySelector('.cards__list--library');
 const cardsList = document.querySelector('.cards__list');
-
 
 const movieGalleryFetch = new FetchData();
 // Получаем данные
@@ -47,12 +46,10 @@ function createCard(data) {
     .join('');
 }
 
-
-
 //создание карточки
 
 // function createCard(response) {
-//   const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) => 
+//   const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) =>
 //            `<li class="cards__item" id="${id}">
 //         <a class="cards__link">
 //             <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
@@ -118,4 +115,3 @@ export {
   cardsList,
   cardsListLibrary,
 };
-
