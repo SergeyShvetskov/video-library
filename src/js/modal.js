@@ -1,18 +1,26 @@
+
 const modalCloseBtn = document.querySelector("[data-modal-close]");
-const modalOpenBtn = document.querySelector("[data-modal-open]")
 const modal = document.querySelector("[data-modal]");
 
-modalOpenBtn.addEventListener('click', toggleModal);
 modalCloseBtn.addEventListener('click', toggleModal);
-document.addEventListener('keydown', closeModal);
+document.addEventListener('keydown', closeModalEsc);
+document.addEventListener('click', closeModalClick);
+
 
 function toggleModal() {
-    modal.classList.toggle("is-hidden");
+    modal.classList.add("is-hidden");
+}
+
+function closeModalClick(e) {
+    if (e.target === modal) {
+        modal.classList.add("is-hidden");
+    }
 }
   
-function closeModal(e) {
+function closeModalEsc(e) {
     if (e.keyCode === 27) {
         modal.classList.add("is-hidden");
     }
 }
 
+export { modal };

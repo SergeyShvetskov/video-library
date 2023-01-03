@@ -1,8 +1,11 @@
 import allGenres from './genres.json';
 
 
+
 const cardsListLibrary = document.querySelector('.cards__list--library');
 const cardsList = document.querySelector('.cards__list');
+
+
 
 //создание карточки
 function createCard(data) {
@@ -24,6 +27,7 @@ function createCard(data) {
     })
     .join('');
 }
+
 
 //вставка разметки
 function insertMarkup(htmlMarkup, htmlEl) {
@@ -65,6 +69,7 @@ function findGenresOfMovie(ids) {
   }
   return movieGenres.join(', ');
 }
+
 
 export {
   createCard,
