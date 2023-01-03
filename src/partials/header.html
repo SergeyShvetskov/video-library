@@ -1,36 +1,46 @@
 <header class="header">
-  <div class="container">
+  <div class="header-container">
     <div class="header-wrapper">
-      <a class="header-logo">
-        <svg class="header-logo__svg "  height="24px" width="24px">
-          <use href="./images/symbol-defs.svg#icon-film" ></use>
+      <a href="./index.html" class="header-logo">
+        <svg class="header-logo__svg" height="24px" width="24px">
+          <use href="./images/symbol-defs.svg#icon-film"></use>
         </svg>
         <p class="header-logo__text">Filmoteka</p>
-        
       </a>
 
       <naw class="header-nav">
-      <ul class="header-nav__list">
-        <li class="header-nav__home">HOME</li>
-        <li class="header-nav__library">MY LIBRARY</li>
-        </li>
-      </ul>  
-      </naw>   
+        <ul class="header-nav__list">
+          <li class="header-nav__menu">
+            <a
+              href="./index.html"
+              class="header-nav__menu-link header-nav__menu-link_current"
+              >HOME</a
+            >
+          </li>
+          <li class="header-nav__menu">
+            <a href="./library.html" class="header-nav__menu-link"
+              >MY LIBRARY</a
+            >
+          </li>
+        </ul>
+      </naw>
     </div>
 
-  <div class="header-search">
-    <form class="header-search__wrapper">
-      <input class="header-search__input" type="text"
-          name="query" autocomplete="off"    placeholder="Movie search"/>
-          <button type="submit" class="btn-search">
-           <svg class="btn-search__svg "  height="12px" width="12px">
-          <use href="./images/symbol-defs.svg#icon-search-2" ></use>
-        </svg> 
-          </button>
-          
-
-    </form>
-  </div>
-
+    <div class="header-search">
+      <form class="header-search__wrapper">
+        <input
+          class="header-search__input"
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Movie search"
+        />
+        <button type="submit" class="btn-search">
+          <svg class="btn-search__svg" height="12px" width="12px">
+            <use href="./images/symbol-defs.svg#icon-search-2"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
   </div>
 </header>
