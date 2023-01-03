@@ -6,6 +6,7 @@
 @import './base/null-style';
 @import './base/section';
 
+@import './components/backdrop';
 @import './components/logo';
 @import './components/buttons';
 @import './components/filmCards-home';
@@ -16,3 +17,4 @@
 // @import './layout/gallery';
 @import './layout/header';
 @import './layout/header-library';
+@import './layout/modal';
