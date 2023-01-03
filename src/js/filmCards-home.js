@@ -1,11 +1,7 @@
 import allGenres from './genres.json';
 
-
-
 const cardsListLibrary = document.querySelector('.cards__list--library');
 const cardsList = document.querySelector('.cards__list');
-
-
 
 //создание карточки
 function createCard(data) {
@@ -28,12 +24,10 @@ function createCard(data) {
     .join('');
 }
 
-
 //вставка разметки
 function insertMarkup(htmlMarkup, htmlEl) {
   htmlEl.innerHTML = htmlMarkup;
 }
-
 //отображение года выпуска
 function createYear(data) {
   if (data) {
@@ -42,7 +36,6 @@ function createYear(data) {
     return (data = 'Not found');
   }
 }
-
 //обрезка название
 function getShortName(string) {
   if (string) {
@@ -52,7 +45,6 @@ function getShortName(string) {
     return string;
   }
 }
-
 // жанр
 const { genres } = allGenres;
 function findGenresOfMovie(ids) {
@@ -61,7 +53,6 @@ function findGenresOfMovie(ids) {
   if (movieGenres.length > 2) {
     const removedGenres = movieGenres.splice(0, 2);
     removedGenres.push('Other');
-
     return removedGenres.join(', ');
   }
   if (movieGenres.length === 0) {
@@ -69,8 +60,6 @@ function findGenresOfMovie(ids) {
   }
   return movieGenres.join(', ');
 }
-
-
 export {
   createCard,
   insertMarkup,
