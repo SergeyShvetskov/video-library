@@ -1,10 +1,20 @@
 import allGenres from './genres.json';
+import { modal } from './modal';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
   cardsList: document.querySelector('.cards__list'),
+}
+  
+refs.cardsList.addEventListener('click', onClickCard);
+function onClickCard(event) {
+  let idFilm = 0;
+  event.preventDefault();
+  idFilm = event.path[2].id;
+  if (idFilm) {
+    modal.classList.remove('is-hidden');
   }
-
+}
 function createCard(response) {
   const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) => 
            `<li class="cards__item" id="${id}">
