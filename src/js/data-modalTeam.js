@@ -1,6 +1,6 @@
 export default [
   {
-    photo: '/src/images/team/Serhiy-Shvetskov.jpg',
+    photo: './images/team/Serhiy-Shvetskov.jpg',
     name: 'Serhiy Shvetskov ',
     position: 'Team Lead',
     git: 'https://github.com/SergeyShvetskov',
@@ -8,7 +8,7 @@ export default [
     email: 'svetsoff@gmail.com',
   },
   {
-    photo: '/src/images/team/Mariia-Tereshchenko.jpg',
+    photo: './images/team/Mariia-Tereshchenko.jpg',
     name: 'Mariia Tereshchenko',
     position: 'Scrum Master',
     git: 'https://github.com/Mlisovskaja',
@@ -16,8 +16,7 @@ export default [
     email: 'mrs.tereshchenko@gmail.com',
   },
   {
-    
-    photo: '/src/images/team/Maryna-Aponasko.jpg',
+    photo: './images/team/Maryna-Aponasko.jpg',
     name: 'Maryna Aponasko',
     position: 'Developer',
     git: 'https://github.com/MarynaAponasko',
@@ -26,7 +25,7 @@ export default [
   },
   {
     
-    photo: '/src/images/team/Serhii-Zhydkov.jpg',
+    photo: './images/team/Serhii-Zhydkov.jpg',
     name: 'Serhii Zhydkov',
     position: 'Developer',
     git: 'https://github.com/serhii95zhydkov',
@@ -34,7 +33,7 @@ export default [
     email: 's.o.zhidkov@gmail.com',
   },
   {
-    photo: '/src/images/team/Oleksandr-Prysmytskyi.jpg',
+    photo: './images/team/Oleksandr-Prysmytskyi.jpg',
     name: 'Oleksandr Prysmytskyi',
     position: 'Developer',
     git: 'https://github.com/Prysmytskyi-Oleksandr',
