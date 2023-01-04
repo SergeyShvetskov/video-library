@@ -1,23 +1,31 @@
 import allGenres from './genres.json';
 import { modal } from './modal';
+import MovesApiService from './fetchMove';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
   cardsList: document.querySelector('.cards__list'),
-}
-  
+};
+
+const movieInfoFetch = new MovesApiService();
+let idMovie = null;
 refs.cardsList.addEventListener('click', onClickCard);
 function onClickCard(event) {
-  let idFilm = 0;
-  event.preventDefault();
-  idFilm = event.path[2].id;
-  if (idFilm) {
+  movieInfoFetch.id = event.path[2].id;
+  idMovie = movieInfoFetch.id;
+  // console.log(idMovie);
+  if (event.path[2]) {
     modal.classList.remove('is-hidden');
+    movieInfoFetch.fetchMoviesInfo().then(data => console.log(data));
   }
+  // console.log(movieInfoFetch.id);
 }
+
 function createCard(response) {
-  const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) => 
-           `<li class="cards__item" id="${id}">
+  const card = response.results
+    .map(
+      ({ id, poster_path, title, release_date, genre_ids }) =>
+        `<li class="cards__item" id="${id}">
         <a class="cards__link">
             <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
         </a>
@@ -30,8 +38,8 @@ function createCard(response) {
             </div>
         </li>`
     )
-        .join('');
-    refs.cardsList.insertAdjacentHTML("beforeend", card);
+    .join('');
+  refs.cardsList.insertAdjacentHTML('beforeend', card);
 }
 
 //отображение года выпуска
@@ -70,36 +78,8 @@ function findGenresOfMovie(ids) {
   return movieGenres.join(', ');
 }
 
-export {
-  createCard,
-  findGenresOfMovie,  
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export { createCard, findGenresOfMovie };
+export { idMovie };
 
 // import allGenres from './genres.json';
 
