@@ -1,9 +1,11 @@
 import allGenres from './genres.json';
 import MovesApiService from './fetchMove';
 
+
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
   cardsList: document.querySelector('.cards__list'),
+  modal: document.querySelector("[data-modal]"),
   }
 
 const movieGalleryFetch = new MovesApiService();
@@ -31,7 +33,13 @@ function createCard(response) {
         </li>`
     )
         .join('');
-    refs.cardsList.insertAdjacentHTML("beforeend", card);
+  refs.cardsList.insertAdjacentHTML("beforeend", card);
+
+document.addEventListener('click', onClickCard)
+function onClickCard(event) {
+  if (event.path[2]);
+  refs.modal.classList.remove("is-hidden");
+}
 }
 
 //отображение года выпуска
