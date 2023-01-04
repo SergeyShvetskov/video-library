@@ -1,6 +1,6 @@
 export function getTeamCard({ photo, name, position, git, linkedin, email }) {
   return `<div class="team-card">
-    <img class="team-card__img" src="${photo}" alt="${name}" width="200px" height="250px"/>
+    <img class="team-card__img" src="${photo}" alt="${name}" width="200px" height="250px">
     <div class="team-card__info">
     <h3 class="team-card__title">${name}</h3>
     <p class="team-card__text">${position}</p>
