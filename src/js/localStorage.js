@@ -9,15 +9,73 @@ const refs = {
 refs.watchedBtn.addEventListener('click', addToWatchedList);
 refs.queueBtn.addEventListener('click', addToQueueList);
 
-const movieGalleryFetch = new MovesApiService();
+const movieInfoFetch = new MovesApiService();
 
 function addToWatchedList(e) {
   console.log('CLICK WATCHED');
-  //   console.log(e);
-  console.log(idMovie);
-  //   movieGalleryFetch.fetchMoviesInfo().then(data => console.log(data));
+  movieInfoFetch.id = localStorage.getItem('id-movie');
+  console.log(movieInfoFetch.id);
+  movieInfoFetch
+    .fetchMoviesInfo()
+    .then(
+      ({
+        genres,
+        id,
+        original_title,
+        overview,
+        popularity,
+        poster_path,
+        relise_date,
+        vote_avarege,
+        vote_count,
+      }) => {
+        const jsonFilmInfo = JSON.stringify({
+          genres,
+          id,
+          original_title,
+          overview,
+          popularity,
+          poster_path,
+          relise_date,
+          vote_avarege,
+          vote_count,
+        });
+        localStorage.setItem(`watched-${id}`, jsonFilmInfo);
+      }
+    );
 }
 
 function addToQueueList(e) {
   console.log('CLICK QUEUE');
+  console.log('CLICK WATCHED');
+  movieInfoFetch.id = localStorage.getItem('id-movie');
+  console.log(movieInfoFetch.id);
+  movieInfoFetch
+    .fetchMoviesInfo()
+    .then(
+      ({
+        genres,
+        id,
+        original_title,
+        overview,
+        popularity,
+        poster_path,
+        relise_date,
+        vote_avarege,
+        vote_count,
+      }) => {
+        const jsonFilmInfo = JSON.stringify({
+          genres,
+          id,
+          original_title,
+          overview,
+          popularity,
+          poster_path,
+          relise_date,
+          vote_avarege,
+          vote_count,
+        });
+        localStorage.setItem(`queue-${id}`, jsonFilmInfo);
+      }
+    );
 }
