@@ -10,7 +10,7 @@ refs.cardsList.addEventListener('click', onClickCard);
 function onClickCard(event) {
   let idFilm = 0;
   event.preventDefault();
-  idFilm = event.path[2].id;
+  idFilm = event.target.closest('.cards__item').id;
   if (idFilm) {
     modal.classList.remove('is-hidden');
   }
