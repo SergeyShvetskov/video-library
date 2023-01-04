@@ -1,8 +1,9 @@
 
+import MovesApiService from './fetchMove'
 const modalCloseBtn = document.querySelector("[data-modal-close]");
 const modal = document.querySelector("[data-modal]");
 
-modalCloseBtn.addEventListener('click', toggleModal);
+//modalCloseBtn.addEventListener('click', toggleModal);
 document.addEventListener('keydown', closeModalEsc);
 document.addEventListener('click', closeModalClick);
 
@@ -22,5 +23,6 @@ function closeModalEsc(e) {
         modal.classList.add("is-hidden");
     }
 }
+
 
 export { modal };
