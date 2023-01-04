@@ -1,8 +1,6 @@
-
 import Notiflix from 'notiflix';
-import NewsApiService from './fetchMove';
+import MovesApiService from './fetchMove';
 import allGenres from './genres.json';
-
 
 
 const refs = {
@@ -11,25 +9,27 @@ const refs = {
     cardsListLibrary: document.querySelector('.cards__list--library'),
 }
 
-const newsApiService = new NewsApiService();
+const movieGalleryFetch = new MovesApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
 
-
 async function onSearch(event) {
   event.preventDefault();
-        
-    newsApiService.searchQuery = event.currentTarget.elements.query.value.trim();
-    newsApiService.resetPage();
-    console.log(newsApiService.searchQuery);
+
+       
+    movieGalleryFetch.searchQuery = event.currentTarget.elements.query.value.trim();
+    movieGalleryFetch.resetPage();
+    console.log(movieGalleryFetch.searchQuery);
     
     clear();
  
-  if (newsApiService.searchQuery === "") {
+  if (movieGalleryFetch.searchQuery === "") {
     return;
   }
+
   
-  await newsApiService.fetchMoves()
+  
+  await movieGalleryFetch.fetchSearchMoves()
     .then((response) => {
       if (response.results.length === 0) {
         return Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and try again.`);
@@ -41,10 +41,6 @@ async function onSearch(event) {
     }
          }).catch(err => err.message);
 };
-
-
- 
-
 
 // создание карточки
 function createCard(response) {
@@ -101,8 +97,6 @@ function findGenresOfMovie(ids) {
   return movieGenres.join(', ');
 }
 
-
 function clear() {
     refs.cardlist.innerHTML = "";     
 };
-
