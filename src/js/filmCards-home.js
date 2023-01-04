@@ -12,6 +12,7 @@ function onClickCard(event) {
   event.preventDefault();
   idFilm = event.target.closest('.cards__item').id;
   if (idFilm) {
+    console.log(idFilm);
     modal.classList.remove('is-hidden');
   }
 }
