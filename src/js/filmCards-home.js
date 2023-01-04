@@ -1,15 +1,24 @@
 import allGenres from './genres.json';
+import MovesApiService from './fetchMove';
+
+const refs = {
+  cardsListLibrary: document.querySelector('.cards__list--library'),
+  cardsList: document.querySelector('.cards__list'),
+  }
+
+const movieGalleryFetch = new MovesApiService();
+
+movieGalleryFetch
+    .fetchTrendMoves()
+  .then((response) => {createCard(response);
+  
+  }).catch(err => err.message);
 
 
-const cardsListLibrary = document.querySelector('.cards__list--library');
-const cardsList = document.querySelector('.cards__list');
 
-//создание карточки
-function createCard(data) {
-  return data
-    .map(obj => {
-      const { id, poster_path, title, release_date, genre_ids } = obj;
-      return `<li class="cards__item" id="${id}">
+function createCard(response) {
+  const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) => 
+           `<li class="cards__item" id="${id}">
         <a class="cards__link">
             <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
         </a>
@@ -20,15 +29,12 @@ function createCard(data) {
               genre_ids
             )} | ${createYear(release_date)}</p>
             </div>
-        </li>`;
-    })
-    .join('');
+        </li>`
+    )
+        .join('');
+    refs.cardsList.insertAdjacentHTML("beforeend", card);
 }
 
-//вставка разметки
-function insertMarkup(htmlMarkup, htmlEl) {
-  htmlEl.innerHTML = htmlMarkup;
-}
 
 //отображение года выпуска
 function createYear(data) {
