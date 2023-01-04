@@ -1,2 +1,0 @@
-const d=document.querySelector("[data-modal-close]"),e=document.querySelector("[data-modal]");d.addEventListener("click",(function(){e.classList.add("is-hidden")})),document.addEventListener("keydown",(function(d){27===d.keyCode&&e.classList.add("is-hidden")})),document.addEventListener("click",(function(d){d.target===e&&e.classList.add("is-hidden")}));
-//# sourceMappingURL=library.39da38a5.js.map
