@@ -8,19 +8,66 @@ const refs = {
 };
 
 const movieInfoFetch = new MovesApiService();
-let idMovie = null;
+
 refs.cardsList.addEventListener('click', onClickCard);
 function onClickCard(event) {
 
   movieInfoFetch.id = event.path[2].id;
-  idMovie = movieInfoFetch.id;
-  // console.log(idMovie);
   if (event.path[2]) {
 
     modal.classList.remove('is-hidden');
-    movieInfoFetch.fetchMoviesInfo().then(data => console.log(data));
+    movieInfoFetch.fetchMoviesInfo().then(data => {
+      console.log(data);
+     createModal(data);
+    })
   }
-  // console.log(movieInfoFetch.id);
+}
+function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description }) {
+  const modalMovie = `<div class="modal-window" id="${id}">
+    <button type="button" class="modal-close-btn button" data-modal-close>
+      <svg class="modal-close-btn-icon" width="30" height="30">
+        <use href="/src/images/symbol-defs.svg#icon-close"></use>
+      </svg>
+    </button>
+    <img
+      class="modal-movie-img"
+      src="https://image.tmdb.org/t/p/w400${poster_path}"
+      alt="${title}"
+    />
+    <div modal-tab-container>
+      <h2 class="modal-movie-title">${title}</h2>
+      <table>
+        <tr class="modal-row">
+          <td class="modal-movie-desc modal-movie-votes">Vote / Votes</td>
+          <td class="modal-movie-data">${vote_average} / ${vote_count}</td>
+        </tr>
+        <tr class="modal-row">
+          <td class="modal-movie-desc modal-movie-popularity">Popularity</td>
+          <td class="modal-movie-data">${popularity}</td>
+        </tr>
+        <tr class="modal-row">
+          <td class="modal-movie-desc modal-movie-original-title">Original title</td>
+          <td class="modal-movie-data">${original_title}</td>
+        </tr>
+        <tr class="modal-row">
+          <td class="modal-movie-desc modal-movie-genre">Genre</td>
+          <td class="modal-movie-data">${genres}</td>
+        </tr>
+      </table>
+
+      <h4 class="modal-movie-about-title">About</h4>
+      <p class="modal-movie-description">${description}</p>
+      <div class="modal-btns">
+        <button type="button" class="modal-form-watched-bnt">
+          Add to watched
+        </button>
+        <button type="button" class="modal-form-queue-bnt">Add to queue</button>
+      </div>
+    </div>
+  </div>`;
+
+  modal.insertAdjacentHTML('beforeend', modalMovie);
+
 }
 
 function createCard(response) {
