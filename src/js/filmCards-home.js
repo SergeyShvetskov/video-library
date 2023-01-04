@@ -8,19 +8,16 @@ const refs = {
 };
 
 const movieInfoFetch = new MovesApiService();
-let idMovie = null;
+
 refs.cardsList.addEventListener('click', onClickCard);
+
 function onClickCard(event) {
-
   movieInfoFetch.id = event.path[2].id;
-  idMovie = movieInfoFetch.id;
-  // console.log(idMovie);
+  localStorage.setItem(`id-movie`, movieInfoFetch.id);
   if (event.path[2]) {
-
     modal.classList.remove('is-hidden');
     movieInfoFetch.fetchMoviesInfo().then(data => console.log(data));
   }
-  // console.log(movieInfoFetch.id);
 }
 
 function createCard(response) {
