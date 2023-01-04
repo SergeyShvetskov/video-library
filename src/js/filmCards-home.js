@@ -1,19 +1,9 @@
 import allGenres from './genres.json';
-import MovesApiService from './fetchMove';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
   cardsList: document.querySelector('.cards__list'),
   }
-
-const movieGalleryFetch = new MovesApiService();
-
-movieGalleryFetch
-    .fetchTrendMoves()
-  .then((response) => {createCard(response);
-  
-  }).catch(err => err.message);
-
 
 function createCard(response) {
   const card = response.results.map(({ id, poster_path, title, release_date, genre_ids }) => 
@@ -72,10 +62,7 @@ function findGenresOfMovie(ids) {
 
 export {
   createCard,
-  insertMarkup,
-  findGenresOfMovie,
-  cardsList,
-  cardsListLibrary,
+  findGenresOfMovie,  
 };
 
 
