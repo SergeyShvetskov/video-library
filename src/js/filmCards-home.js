@@ -30,7 +30,7 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn button" data-modal-close>
       <svg class="modal-close-btn-icon" width="30" height="30">
-        <use href="/src/images/symbol-defs.svg#icon-close"></use>
+        <use href="./images/symbol-defs.svg#icon-close"></use>
       </svg>
     </button>
     <img
