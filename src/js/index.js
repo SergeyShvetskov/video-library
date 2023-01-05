@@ -4,4 +4,5 @@ import './header.js';
 import './pagination.js';
 import './modal-team.js';
 import './localStorage.js';
+import './loader';
 // import './filmCards-library.js';
