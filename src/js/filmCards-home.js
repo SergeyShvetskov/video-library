@@ -19,14 +19,23 @@ function onClickCard(event) {
   if (event.path[2]) {
     modal.classList.remove('is-hidden');
     movieInfoFetch.fetchMoviesInfo().then(data => {
-      console.log(data);
-     createModal(data);
-    })
+      // console.log(data);
+      createModal(data);
+    });
   }
-
-
 }
-function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description, overview }) {
+function createModal({
+  id,
+  poster_path,
+  title,
+  vote_count,
+  vote_average,
+  popularity,
+  original_title,
+  genres,
+  description,
+  overview,
+}) {
   let genresToStr = genres.map(x => x.name).join(', ');
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn button" data-modal-close>
@@ -72,8 +81,6 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
   </div>`;
 
   modal.insertAdjacentHTML('beforeend', modalMovie);
-
-
 }
 
 function createCard(response) {

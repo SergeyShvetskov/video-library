@@ -1,16 +1,17 @@
 const axios = require('axios').default;
+import { currentPage, defineResultsPerPage } from './pagination-new';
 
 export default class MovesApiService {
   API_KEY = 'a79202f0028fac6a27982a88fb1459a6';
   COMMON_URL = 'https://api.themoviedb.org/3/';
-//   TRENDING_FilM = 'trending/all/day';
+  //   TRENDING_FilM = 'trending/all/day';
   TRENDING_FilM = 'movie/popular';
   SEARCH_FilM = 'search/movie';
   MOVIES_INFO = 'movie/';
 
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.page = currentPage;
     this.id = '';
   }
 
@@ -20,7 +21,7 @@ export default class MovesApiService {
     );
     try {
       const response = responseAxios.data;
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       console.error(error);
