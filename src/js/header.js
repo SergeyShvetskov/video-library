@@ -21,6 +21,10 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
   event.preventDefault();
+  Notiflix.Loading.arrows({
+    clickToClose: false,
+    svgSize: '75px',
+    svgColor: '#ff6b08',});
   
     movieGalleryFetch.searchQuery = event.currentTarget.elements.query.value.trim();
     movieGalleryFetch.resetPage();
@@ -35,10 +39,12 @@ async function onSearch(event) {
   await movieGalleryFetch.fetchSearchMoves()
     .then((response) => {
       if (response.results.length === 0) {
+        Notiflix.Loading.remove(400);
         return Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and try again.`);
         }        
       else {
-          createCard(response);         
+        Notiflix.Loading.remove(400);
+        createCard(response);         
       }
          }).catch(err => err.message);
 };
