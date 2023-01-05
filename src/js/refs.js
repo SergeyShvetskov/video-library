@@ -1,6 +1,6 @@
 // const formRef = document.getElementById('search-form');
 const inputRef = document.querySelector('.header-search__wrapper');
-const cardlist = document.querySelector('.cards__list');
+const cardList = document.querySelector('.cards__list');
 // const headerRef = document.querySelector('.header');
 // const pageHomeRef = document.querySelector('.menu__link-home');
 // const pageLabraryRef = document.querySelector('.menu__link-library');
@@ -9,9 +9,9 @@ const cardlist = document.querySelector('.cards__list');
 // const headerWarning = document.querySelector('.warning-notification');
 // const pagiCont = document.querySelector('.pagination-container');
 export {
-  formRef,
+  // formRef,
   inputRef,
-  cardlist,
+  cardList,
   headerRef,
   pageHomeRef,
   pageLabraryRef,

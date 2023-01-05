@@ -1,6 +1,7 @@
 import allGenres from './genres.json';
 import { modal } from './modal';
 import MovesApiService from './fetchMove';
+import { cardList } from './refs';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),

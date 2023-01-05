@@ -1,5 +1,4 @@
 const axios = require('axios').default;
-import { currentPage, defineResultsPerPage } from './pagination-new';
 
 export default class MovesApiService {
   API_KEY = 'a79202f0028fac6a27982a88fb1459a6';

@@ -1,15 +1,17 @@
 // import { startPage } from '../start-page';
 // import { gallery, inputRef } from '../references/refs';
 // import { movieSearcher } from '../search';
-import { inputRef, cardlist } from './refs';
-import MovesApiService from './fetchMove';
+import { inputRef, cardList } from './refs';
+// import MovesApiService from './fetchMove';
 import { createCard } from './func-create-cadr';
 
 // const cardlist = document.querySelector('.cards__list');
-const movieGalleryFetch2 = new MovesApiService();
+// const movieGalleryFetch2 = new MovesApiService();
 
 // const searchForm = document.querySelector('.header-search__wrapper');
 //   searchForm.addEventListener('submit', onSearch);
+console.log(`перевіряю inputRef ${inputRef.value}`);
+console.log(`перевіряю cardList ${cardList.value}`);
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -115,21 +117,23 @@ function onPaginationClick(event) {
       lastPageRef.hidden = false;
     }
 
-    cardlist.innerHTML = '';
+    cardList.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (inputRef.value !== '') {
       // movieSearcher(inputRef.value, currentPage);
-
-      movieGalleryFetch2
-        .fetchSearchMoves(inputRef.value, currentPage)
-        .then(response => {
-
-          createCard(response);
-        })
-        .catch(err => err.message);
-      
+      console.log('намагаюся зробити картки');
+      console.log(inputRef.value);
+      // console.log(movieGalleryFetch.searchQuery);
+      // movieGalleryFetch
+      //   .fetchSearchMoves(inputRef.value, currentPage)
+      //   .then(response => {
+      //     createCard(response);
+      //   })
+      //   .catch(err => err.message);
     } else {
+      console.log('роблю стартову сторінку');
+
       //   startPage();
     }
   }

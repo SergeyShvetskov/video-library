@@ -1,6 +1,6 @@
-import { cardlist } from "./refs";
+import { cardList } from './refs';
 
-function createCard(response) {
+function createCard2(response) {
   const card = response.results
     .map(
       ({ id, poster_path, title, release_date, genre_ids }) =>
@@ -18,7 +18,7 @@ function createCard(response) {
         </li>`
     )
     .join('');
-  cardsList.insertAdjacentHTML('beforeend', card);
+  cardList.insertAdjacentHTML('beforeend', card);
 }
 
-export { createCard };
+export { createCard2 };

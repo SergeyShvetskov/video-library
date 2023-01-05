@@ -1,6 +1,8 @@
 import Notiflix from 'notiflix';
 import MovesApiService from './fetchMove';
 import { createCard } from './filmCards-home';
+// import { createCard2 } from './func-create-cadr';
+import { formRef } from './refs';
 
 const refs = {
   searchForm: document.querySelector('.header-search__wrapper'),
@@ -21,7 +23,7 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
   event.preventDefault();
-
+  formRef = event.currentTarget.elements.query.value.trim();
   movieGalleryFetch.searchQuery =
     event.currentTarget.elements.query.value.trim();
   movieGalleryFetch.resetPage();
@@ -37,6 +39,7 @@ async function onSearch(event) {
     .fetchSearchMoves()
     .then(response => {
       if (response.results.length === 0) {
+        console.lof('помилка');
         return Notiflix.Notify.failure(
           `Search result not successful. Enter the correct movie name and try again.`
         );
