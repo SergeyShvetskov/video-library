@@ -8,8 +8,6 @@ import { API_KEY,
 import allGenres from './genres.json'
 const axios = require('axios').default;
 
-console.log(`перевіряю inputRef ${inputRef.value}`);
-console.log(`перевіряю cardList ${cardList.value}`);
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -148,20 +146,20 @@ function onPaginationClick(event) {
   }
 }
 
-let pageSize = 9;
+// let pageSize = 9;
 
-function defineResultsPerPage() {
-  if (window.innerWidth >= 1024) {
-    pageSize = 9;
-  } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-    pageSize = 8;
-  } else if (window.innerWidth < 768) {
-    pageSize = 4;
-  }
-  return pageSize;
-}
+// function defineResultsPerPage() {
+//   if (window.innerWidth >= 1280) {
+//     pageSize = 9;
+//   } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+//     pageSize = 8;
+//   } else if (window.innerWidth < 768) {
+//     pageSize = 4;
+//   }
+//   return pageSize;
+// }
 
-export { currentPage, defineResultsPerPage };
+export { currentPage };
 
 
 
@@ -267,8 +265,6 @@ function createCard(response) {
             </div>
         </li>`
     }
-      // console.log(`${id}, ${poster_path}, ${title}, ${release_date}, ${genre_ids}`)
-        
     )
     .join('');
    console.log('передаю картки на розмітку');
