@@ -10,17 +10,21 @@ const refs = {
 const movieInfoFetch = new MovesApiService();
 
 refs.cardsList.addEventListener('click', onClickCard);
+
 function onClickCard(event) {
-
   movieInfoFetch.id = event.path[2].id;
-  if (event.path[2]) {
 
+  localStorage.setItem(`id-movie`, movieInfoFetch.id);
+
+  if (event.path[2]) {
     modal.classList.remove('is-hidden');
     movieInfoFetch.fetchMoviesInfo().then(data => {
       console.log(data);
      createModal(data);
     })
   }
+
+
 }
 function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description }) {
   const modalMovie = `<div class="modal-window" id="${id}">
@@ -67,6 +71,7 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
   </div>`;
 
   modal.insertAdjacentHTML('beforeend', modalMovie);
+
 
 }
 
