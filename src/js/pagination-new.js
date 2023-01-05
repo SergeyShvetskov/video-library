@@ -1,15 +1,13 @@
-// import { startPage } from '../start-page';
-// import { gallery, inputRef } from '../references/refs';
-// import { movieSearcher } from '../search';
-import { inputRef, cardList } from './refs';
-// import MovesApiService from './fetchMove';
-import { createCard } from './func-create-cadr';
+import { API_KEY,
+  COMMON_URL,
+  TRENDING_FilM,
+  SEARCH_FilM, 
+  MOVIES_INFO, 
+  inputRef,
+  cardList} from './refs';
+import allGenres from './genres.json'
+const axios = require('axios').default;
 
-// const cardlist = document.querySelector('.cards__list');
-// const movieGalleryFetch2 = new MovesApiService();
-
-// const searchForm = document.querySelector('.header-search__wrapper');
-//   searchForm.addEventListener('submit', onSearch);
 console.log(`перевіряю inputRef ${inputRef.value}`);
 console.log(`перевіряю cardList ${cardList.value}`);
 
@@ -120,19 +118,30 @@ function onPaginationClick(event) {
     cardList.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+
+  // API_KEY = 'a79202f0028fac6a27982a88fb1459a6';
+  // COMMON_URL = 'https://api.themoviedb.org/3/';
+  // //   TRENDING_FilM = 'trending/all/day';
+  // TRENDING_FilM = 'movie/popular';
+  // SEARCH_FilM = 'search/movie';
+  // MOVIES_INFO = 'movie/';
+
+
+
     if (inputRef.value !== '') {
-      // movieSearcher(inputRef.value, currentPage);
-      console.log('намагаюся зробити картки');
-      console.log(inputRef.value);
-      // console.log(movieGalleryFetch.searchQuery);
-      // movieGalleryFetch
-      //   .fetchSearchMoves(inputRef.value, currentPage)
-      //   .then(response => {
-      //     createCard(response);
-      //   })
-      //   .catch(err => err.message);
+      console.log(inputRef.value, currentPage);
+      console.log(`намагаюся зробити картки currentPage=${currentPage}`);
+        fetchSearchMoves2(inputRef.value, currentPage)
+  .then(response => {
+    console.log('намагаюсь створити картки');
+    createCard(response)
+    console.log('картки відпрацювали');
+
+  })
+  .catch(err => err.message);
+     
     } else {
-      console.log('роблю стартову сторінку');
+      console.log('інакше роблю стартову сторінку');
 
       //   startPage();
     }
@@ -153,3 +162,166 @@ function defineResultsPerPage() {
 }
 
 export { currentPage, defineResultsPerPage };
+
+
+
+
+
+
+//------------------------------------------------
+
+
+
+// export default class MovesApiService {
+//   API_KEY = 'a79202f0028fac6a27982a88fb1459a6';
+//   COMMON_URL = 'https://api.themoviedb.org/3/';
+//   //   TRENDING_FilM = 'trending/all/day';
+//   TRENDING_FilM = 'movie/popular';
+//   SEARCH_FilM = 'search/movie';
+//   MOVIES_INFO = 'movie/';
+
+//   constructor() {
+//     this.searchQuery = '';
+//     this.page = 1;
+//     this.id = '';
+//   }
+
+//   async fetchMoviesInfo() {
+//     const responseAxios = await axios.get(
+//       `${this.COMMON_URL}${this.MOVIES_INFO}${this.id}?api_key=${this.API_KEY}`
+//     );
+//     try {
+//       const response = responseAxios.data;
+//       // console.log(response);
+//       return response;
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
+//   async fetchTrendMoves() {
+//     const responseAxios = await axios.get(
+//       `${this.COMMON_URL}${this.TRENDING_FilM}?api_key=${this.API_KEY}&page=${this.page}`
+//     );
+//     try {
+//       // console.log(responseAxios);
+//       const response = responseAxios.data;
+//       this.page += 1;
+//       return response;
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
+//   async fetchSearchMoves() {
+//     const responseAxios = await axios.get(
+//       `${this.COMMON_URL}${this.SEARCH_FilM}?api_key=${this.API_KEY}&query=${this.searchQuery}&page=${this.page}`
+//     );
+//     try {
+//       console.log(responseAxios);
+//       const response = responseAxios.data;
+//       this.page += 1;
+//       return response;
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
+//   get query() {
+//     return this.searchQuery;
+//   }
+//   set query(newQuery) {
+//     this.searchQuery = newQuery;
+//   }
+
+//   resetPage() {
+//     this.page = 1;
+//   }
+// }
+
+
+//-----------------створення карток
+
+function createCard(response) {
+  console.log('роблю картки createCard2');
+  console.log(response.results);
+  const linkPoster = 'https://image.tmdb.org/t/p/w400'
+  const card = response.results
+    .map(({ id, poster_path, title, release_date, genre_ids }) => {
+      if (poster_path) {
+        poster_path = linkPoster + poster_path;
+      } else { 
+        poster_path = '	https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg'
+      }
+      
+      return `<li class="cards__item" id="${id}">
+        <a class="cards__link">
+            <img class="cards__img" src="${poster_path}" alt="${title}" loading="lazy">
+        </a>
+            <div class="cards__text"><h2 class="cards__name">${getShortName(
+              title
+            )}</h2>
+            <p class="cards__genres"> ${findGenresOfMovie(
+              genre_ids
+            )} | ${createYear(release_date)}</p>
+            </div>
+        </li>`
+    }
+      // console.log(`${id}, ${poster_path}, ${title}, ${release_date}, ${genre_ids}`)
+        
+    )
+    .join('');
+   console.log('передаю картки на розмітку');
+  cardList.insertAdjacentHTML('beforeend', card);
+}
+
+const { genres } = allGenres;
+function findGenresOfMovie(ids) {
+  const arr = ids.flatMap(id => genres.filter(element => element.id === id));
+  let movieGenres = arr.map(el => el.name);
+  if (movieGenres.length > 2) {
+    const removedGenres = movieGenres.splice(0, 2);
+    removedGenres.push('Other');
+
+    return removedGenres.join(', ');
+  }
+  if (movieGenres.length === 0) {
+    return (movieGenres = '...');
+  }
+  return movieGenres.join(', ');
+}
+
+function getShortName(string) {
+  if (string) {
+    if (string.length >= 32) {
+      return string.substr(0, 32) + '...';
+    }
+    return string;
+  }
+}
+
+
+
+//отображение года выпуска
+function createYear(data) {
+  if (data) {
+    return data.slice(0, 4);
+  } else {
+    return (data = 'Not found');
+  }
+}
+
+
+ async function fetchSearchMoves2(searchQuery, page) {
+    const responseAxios = await axios.get(
+      `${this.COMMON_URL}${SEARCH_FilM}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
+    );
+    try {
+      console.log(responseAxios);
+      const response = responseAxios.data;
+      // this.page += 1;
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }

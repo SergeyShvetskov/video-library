@@ -85,6 +85,7 @@ function createModal({
 }
 
 function createCard(response) {
+  console.log('роблю картки createCard');
   const card = response.results
     .map(
       ({ id, poster_path, title, release_date, genre_ids }) =>
