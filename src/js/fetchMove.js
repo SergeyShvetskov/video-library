@@ -11,7 +11,7 @@ export default class MovesApiService {
 
   constructor() {
     this.searchQuery = '';
-    this.page = currentPage;
+    this.page = 1;
     this.id = '';
   }
 

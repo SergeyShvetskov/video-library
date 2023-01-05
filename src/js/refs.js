@@ -1,6 +1,6 @@
 // const formRef = document.getElementById('search-form');
 const inputRef = document.querySelector('.header-search__wrapper');
-// const gallery = document.querySelector('.collection');
+const cardlist = document.querySelector('.cards__list');
 // const headerRef = document.querySelector('.header');
 // const pageHomeRef = document.querySelector('.menu__link-home');
 // const pageLabraryRef = document.querySelector('.menu__link-library');
@@ -11,7 +11,7 @@ const inputRef = document.querySelector('.header-search__wrapper');
 export {
   formRef,
   inputRef,
-  gallery,
+  cardlist,
   headerRef,
   pageHomeRef,
   pageLabraryRef,

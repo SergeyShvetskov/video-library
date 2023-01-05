@@ -1,11 +1,12 @@
 // import { startPage } from '../start-page';
 // import { gallery, inputRef } from '../references/refs';
 // import { movieSearcher } from '../search';
-import { inputRef } from './refs';
+import { inputRef, cardlist } from './refs';
 import MovesApiService from './fetchMove';
+import { createCard } from './func-create-cadr';
 
-const cardlist = document.querySelector('.cards__list');
-const movieGalleryFetch = new MovesApiService();
+// const cardlist = document.querySelector('.cards__list');
+const movieGalleryFetch2 = new MovesApiService();
 
 // const searchForm = document.querySelector('.header-search__wrapper');
 //   searchForm.addEventListener('submit', onSearch);
@@ -119,12 +120,15 @@ function onPaginationClick(event) {
 
     if (inputRef.value !== '') {
       // movieSearcher(inputRef.value, currentPage);
-      movieGalleryFetch
-        .fetchTrendMoves()
+
+      movieGalleryFetch2
+        .fetchSearchMoves(inputRef.value, currentPage)
         .then(response => {
+
           createCard(response);
         })
         .catch(err => err.message);
+      
     } else {
       //   startPage();
     }
