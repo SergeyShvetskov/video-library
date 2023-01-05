@@ -6,8 +6,8 @@ const refs = {
   queueBtn: document.querySelector('.modal-form-queue-bnt'),
 };
 
-refs.watchedBtn.addEventListener('click', addToWatchedList);
-refs.queueBtn.addEventListener('click', addToQueueList);
+// refs.watchedBtn.addEventListener('click', addToWatchedList);
+// refs.queueBtn.addEventListener('click', addToQueueList);
 
 const movieInfoFetch = new MovesApiService();
 
