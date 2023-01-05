@@ -26,7 +26,7 @@ function onClickCard(event) {
 
 
 }
-function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description }) {
+function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description, overview }) {
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn button" data-modal-close>
       <svg class="modal-close-btn-icon" width="30" height="30">
@@ -60,7 +60,7 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
       </table>
 
       <h4 class="modal-movie-about-title">About</h4>
-      <p class="modal-movie-description">${description}</p>
+      <p class="modal-movie-description">${overview}</p>
       <div class="modal-btns">
         <button type="button" class="modal-form-watched-bnt">
           Add to watched
