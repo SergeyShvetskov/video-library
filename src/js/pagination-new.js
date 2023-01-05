@@ -119,16 +119,16 @@ function onPaginationClick(event) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
 
-  // API_KEY = 'a79202f0028fac6a27982a88fb1459a6';
-  // COMMON_URL = 'https://api.themoviedb.org/3/';
-  // //   TRENDING_FilM = 'trending/all/day';
-  // TRENDING_FilM = 'movie/popular';
-  // SEARCH_FilM = 'search/movie';
-  // MOVIES_INFO = 'movie/';
+  API_KEY = 'a79202f0028fac6a27982a88fb1459a6';
+  COMMON_URL = 'https://api.themoviedb.org/3/';
+  //   TRENDING_FilM = 'trending/all/day';
+  TRENDING_FilM = 'movie/popular';
+  SEARCH_FilM = 'search/movie';
+  MOVIES_INFO = 'movie/';
 
 
 
-    if (inputRef.value !== '') {
+    if (inputRef.value !== '' ) {
       console.log(inputRef.value, currentPage);
       console.log(`намагаюся зробити картки currentPage=${currentPage}`);
         fetchSearchMoves2(inputRef.value, currentPage)
@@ -248,10 +248,10 @@ function createCard(response) {
   const linkPoster = 'https://image.tmdb.org/t/p/w400'
   const card = response.results
     .map(({ id, poster_path, title, release_date, genre_ids }) => {
-      if (poster_path) {
+      if (poster_path === "" || poster_path === "null" || poster_path === null) {
+        poster_path = 'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg'
+      } else {
         poster_path = linkPoster + poster_path;
-      } else { 
-        poster_path = '	https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg'
       }
       
       return `<li class="cards__item" id="${id}">
