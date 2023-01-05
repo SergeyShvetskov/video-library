@@ -24,11 +24,32 @@ function onCloseModal(event) {
   refs.modalTeam.classList.add('is-hidden');
 }
 
+window.addEventListener('keydown', onEscKeyPress);
+
+function onEscKeyPress(event) {
+  const ESC_KEY_CODE = 'Escape';
+  const isEscKey = event.code === ESC_KEY_CODE;
+
+  if (isEscKey) {
+    refs.modalTeam.classList.add('is-hidden');
+  }
+}
+
+refs.modalTeam.addEventListener('click', onModalCloseBackdrop);
+
+function onModalCloseBackdrop(event) {
+  const isBackdrop = event.target.classList.contains('team-backdrop');
+
+  if (isBackdrop) {
+    refs.modalTeam.classList.add('is-hidden');
+  }
+}
+
 // function renderTeamCard() {
 //   const markup = cards
 //     .map(getTeamCard)
 //     .join("");
-  
+
 //   refs.teamList.insertAdjacentHTML("beforeend", markup);
 // }
 
