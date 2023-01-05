@@ -27,6 +27,7 @@ function onClickCard(event) {
 
 }
 function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description, overview }) {
+  let genresToStr = genres.map(x => x.name).join(', ');
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn button" data-modal-close>
       <svg class="modal-close-btn-icon" width="30" height="30">
@@ -55,7 +56,7 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
         </tr>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-genre">Genre</td>
-          <td class="modal-movie-data">${genres}</td>
+          <td class="modal-movie-data">${genresToStr}</td>
         </tr>
       </table>
 
