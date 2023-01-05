@@ -78,3 +78,22 @@
         line-height: 1.2;
     }
 }
+
+
+
+.film-rating{
+    padding: 1px 10px;
+    color: #ffffff;
+    background-color: #FF6B08;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.16;
+
+    @media screen and (min-width: 1280px) {
+        width: 40px;
+        height: 20px;
+    }
+
+}
+
