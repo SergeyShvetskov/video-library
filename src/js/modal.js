@@ -1,14 +1,14 @@
 import MovesApiService from './fetchMove';
 import { createCard, findGenresOfMovie, refs } from './filmCards-home';
 
-const modal = document.querySelector("[data-modal]");
+const modal = document.querySelector('[data-modal]');
 const movieInfoFetch = new MovesApiService();
 
 refs.cardsList.addEventListener('click', onClickCard);
 
 function onClickCard(e) {
-document.addEventListener('keydown', closeModalEsc);
-document.addEventListener('click', closeModalClick);
+  document.addEventListener('keydown', closeModalEsc);
+  document.addEventListener('click', closeModalClick);
 
   movieInfoFetch.id = e.path[2].id;
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
@@ -17,11 +17,22 @@ document.addEventListener('click', closeModalClick);
     modal.classList.remove('is-hidden');
     refs.cardsList.removeEventListener('click', onClickCard);
     movieInfoFetch.fetchMoviesInfo().then(data => {
-     createModal(data);
-    })
+      createModal(data);
+    });
   }
 }
-function createModal({ id, poster_path, title, vote_count, vote_average, popularity, original_title, genres, description, overview }) {
+function createModal({
+  id,
+  poster_path,
+  title,
+  vote_count,
+  vote_average,
+  popularity,
+  original_title,
+  genres,
+  description,
+  overview,
+}) {
   let genresToStr = genres.map(x => x.name).join(', ');
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn" data-modal-close>
@@ -69,8 +80,6 @@ function createModal({ id, poster_path, title, vote_count, vote_average, popular
   modal.innerHTML = modalMovie;
 }
 
-
-
 function closeModalClick(e) {
   refs.cardsList.addEventListener('click', onClickCard);
   if (e.target === modal) {
@@ -78,20 +87,19 @@ function closeModalClick(e) {
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
-  }
-  else if (e.path[2].classList.value === "modal-close-btn") {
+  } else if (e.path[2].classList.value === 'modal-close-btn') {
     modal.classList.add('is-hidden');
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
   }
-    switch (e.target.className) {
+  switch (e.target.className) {
     case 'modal-form-watched-bnt':
-      console.log('watched');
+      createWatchedInfo();
       break;
 
     case 'modal-form-queue-bnt':
-      console.log('queue');
+      createQueueInfo();
       break;
 
     default:
@@ -108,8 +116,20 @@ function closeModalEsc(e) {
   }
 }
 
+function createWatchedInfo() {
+  console.log('clickModalbtn');
+  movieInfoFetch.id = localStorage.getItem('id-movie');
+  console.log(movieInfoFetch.id);
+  const jsonFilmInfo = JSON.stringify(movieInfoFetch.id);
+  localStorage.setItem(`watched-${movieInfoFetch.id}`, jsonFilmInfo);
+}
 
-
-
+function createQueueInfo() {
+  console.log('clickQueueBtn');
+  movieInfoFetch.id = localStorage.getItem('id-movie');
+  console.log(movieInfoFetch.id);
+  const jsonFilmInfo = JSON.stringify(movieInfoFetch.id);
+  localStorage.setItem(`queue-${movieInfoFetch.id}`, jsonFilmInfo);
+}
 
 export { modal };
