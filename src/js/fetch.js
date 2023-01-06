@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { API_KEY,
   COMMON_URL,
   TRENDING_FilM,
@@ -14,7 +15,8 @@ async function fetchTrendMoves(page=1) {
       const response = responseAxios.data;
       return response;
     } catch (error) {
-      console.error(error);
+        Notiflix.Notify.failure(error);
+    //   console.error(error);
     }
 }
 async function fetchSearchMoves2(searchQuery, page) {
@@ -28,6 +30,7 @@ async function fetchSearchMoves2(searchQuery, page) {
       // this.page += 1;
       return response;
     } catch (error) {
+        Notiflix.Notify.failure(error);
       console.error(error);
     }
 }

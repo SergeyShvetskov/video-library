@@ -68,14 +68,14 @@ async function onSearch(event) {
 
       }
     })
-    .catch(err => err.message);
+    .catch(err => Notiflix.Notify.failure(err));
 
     
   } else {
     fetchTrendMoves(1).then(response => {
     createCard(response);
   })
-  .catch(err => err.message);
+  .catch(err => Notiflix.Notify.failure(err));
 }
   }
  
