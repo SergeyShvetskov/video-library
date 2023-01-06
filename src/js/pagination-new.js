@@ -32,7 +32,6 @@ leftArrowRef.hidden = true;
 firstPageRef.hidden = true;
 
 function onPaginationClick(event) {
-  console.log(event);
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
       currentPage = Number(event.target.textContent);
