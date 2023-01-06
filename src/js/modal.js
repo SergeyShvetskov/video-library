@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import MovesApiService from './fetchMove';
 import { createCard, findGenresOfMovie, refs } from './filmCards-home';
 
@@ -13,11 +14,15 @@ function onClickCard(e) {
   movieInfoFetch.id = e.path[2].id;
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
 
-  if (e.path[2]) {
+  if (e.path[2].id !== "" && e.path[2].id !== null && e.path[2].id !== undefined) {
+    console.log(e.path[2].id);
     modal.classList.remove('is-hidden');
     refs.cardsList.removeEventListener('click', onClickCard);
     movieInfoFetch.fetchMoviesInfo().then(data => {
       createModal(data);
+    }).catch(error => {
+      Notiflix.Notify.failure(error)
+      // console.log(error);
     });
   }
 }
