@@ -18,7 +18,7 @@ async function fetchTrendMoves(page) {
     }
 }
 async function fetchSearchMoves2(searchQuery, page) {
-  console.log(`Працює fetchSearchMoves2 `);
+//   console.log(`Працює fetchSearchMoves2 `);
     const responseAxios = await axios.get(
       `${COMMON_URL}${SEARCH_FilM}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
     );
