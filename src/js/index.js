@@ -8,3 +8,5 @@ import './modal-team.js';
 import './localStorage.js';
 import './filmCards-library.js';
 import './func-create-cadr';
+import './modal';
+import './to-top';
