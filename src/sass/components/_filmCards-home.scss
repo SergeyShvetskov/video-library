@@ -1,5 +1,6 @@
 .cards__list,
 .library-cards__list {
+    min-height: 455px;
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -1,6 +1,7 @@
 import allGenres from './genres.json';
 import { modal } from './modal';
 import MovesApiService from './fetchMove';
+import { cardList } from './refs';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
@@ -11,6 +12,7 @@ const movieInfoFetch = new MovesApiService();
 
 
 function createCard(response) {
+  console.log('роблю картки createCard');
   const card = response.results
     .map(
       ({ id, poster_path, title, release_date, genre_ids }) =>

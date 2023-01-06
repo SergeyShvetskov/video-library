@@ -8,20 +8,31 @@ const refs = {
   libraryCardsList: document.querySelector('.library-cards__list'),
 };
 
-refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
-refs.queueBtnLb.addEventListener('click', onQueueBtnClick)
+// refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
+// refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
+window.addEventListener('load', onWatchedBtnLbClick);
 
 function onWatchedBtnLbClick(e) {
-  console.log('click lib');
+  refs.queueBtnLb.style.backgroundColor = 'transparent';
+  refs.queueBtnLb.style.border = '1px solid #FFFFFF';
+  refs.watchedBtnLb.style.backgroundColor = '#ff6b01';
+  refs.watchedBtnLb.style.border = '1px solid #ff6b01';
 //   createWathedGalery();
     createWatchedList();
 }
 
 function onQueueBtnClick(e) {
+  refs.watchedBtnLb.style.backgroundColor = 'transparent';
+  refs.watchedBtnLb.style.border = '1px solid #FFFFFF';
+  refs.queueBtnLb.style.backgroundColor = '#ff6b01';
+  refs.queueBtnLb.style.border = '1px solid #ff6b01';
+
     createWatchedList()
 }
 
 function createWatchedList() {
+
+
     refs.libraryCardsList.innerHTML = '';
   for (let i = 0; i < localStorage.length; i += 1) {
     // console.log(localStorage.length);
@@ -52,6 +63,7 @@ function createWatchedList() {
 }
 
 function createQueueList() {
+
     refs.libraryCardsList.innerHTML = '';
     for (let i = 0; i < localStorage.length; i += 1) {
       // console.log(localStorage.length);
