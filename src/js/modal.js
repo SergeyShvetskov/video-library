@@ -15,10 +15,6 @@ function onClickCard(e) {
   movieInfoFetch.id = e.path[2].id;
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
 
-
-  if (e.path[2]) {
-    
-
   if (
     e.path[2].id !== '' &&
     e.path[2].id !== null &&
@@ -157,4 +153,4 @@ function createQueueInfo() {
   localStorage.setItem(`queue-${movieInfoFetch.id}`, jsonFilmInfo);
 }
 
-export { modal };
+  export { modal };
