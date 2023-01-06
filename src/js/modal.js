@@ -8,18 +8,25 @@ const movieInfoFetch = new MovesApiService();
 refs.cardsList.addEventListener('click', onClickCard);
 
 function onClickCard(e) {
+
   document.addEventListener('keydown', closeModalEsc);
   document.addEventListener('click', closeModalClick);
 
   movieInfoFetch.id = e.path[2].id;
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
 
+
+  if (e.path[2]) {
+    
+
   if (
     e.path[2].id !== '' &&
     e.path[2].id !== null &&
     e.path[2].id !== undefined
   ) {
+  document.body.style.overflow = "hidden";
     // console.log(e.path[2].id);
+
     modal.classList.remove('is-hidden');
     refs.cardsList.removeEventListener('click', onClickCard);
     movieInfoFetch
@@ -62,7 +69,7 @@ function createModal({
       <table>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-votes">Vote / Votes</td>
-          <td class="modal-movie-data">${vote_average} / ${vote_count}</td>
+          <td class="modal-movie-data"><span class="modal-votes">${vote_average}</span> / ${vote_count}</td>
         </tr>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-popularity">Popularity</td>
@@ -99,11 +106,16 @@ function closeModalClick(e) {
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
-  } else if (e.path[2].classList.value === 'modal-close-btn') {
+
+    document.body.style.overflow = "";
+  }
+  else if (e.path[2].classList.value === "modal-close-btn") {
+
     modal.classList.add('is-hidden');
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
+    document.body.style.overflow = "";
   }
   switch (e.target.className) {
     case 'modal-form-watched-bnt':
@@ -125,6 +137,7 @@ function closeModalEsc(e) {
     localStorage.removeItem('id-movie');
     document.removeEventListener('keydown', closeModalEsc);
     document.removeEventListener('click', closeModalClick);
+    document.body.style.overflow = "";
   }
 }
 
