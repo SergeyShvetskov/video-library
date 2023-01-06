@@ -1,6 +1,7 @@
 export default [
   {
-    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Serhiy-Shvetskov.jpg?raw=true',
+    photo:
+      'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Serhiy-Shvetskov.jpg?raw=true',
     name: 'Serhiy Shvetskov',
     position: 'Team Lead',
     git: 'https://github.com/SergeyShvetskov',
@@ -8,7 +9,8 @@ export default [
     email: 'svetsoff@gmail.com',
   },
   {
-    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Mariia-Tereshchenko.jpg?raw=true',
+    photo:
+      'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Mariia-Tereshchenko.jpg?raw=true',
     name: 'Mariia Tereshchenko',
     position: 'Scrum Master',
     git: 'https://github.com/Mlisovskaja',
@@ -16,7 +18,8 @@ export default [
     email: 'mrs.tereshchenko@gmail.com',
   },
   {
-    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Maryna-Aponasko.jpg?raw=true',
+    photo:
+      'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Maryna-Aponasko.jpg?raw=true',
     name: 'Maryna Aponasko',
     position: 'Developer',
     git: 'https://github.com/MarynaAponasko',
@@ -24,8 +27,8 @@ export default [
     email: 'maryna.aponasko@gmail.com',
   },
   {
-    
-    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Serhii-Zhydkov.jpg?raw=true',
+    photo:
+      'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Serhii-Zhydkov.jpg?raw=true',
     name: 'Serhii Zhydkov',
     position: 'Developer',
     git: 'https://github.com/serhii95zhydkov',
@@ -33,7 +36,8 @@ export default [
     email: 's.o.zhidkov@gmail.com',
   },
   {
-    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Oleksandr-Prysmytskyi.jpg?raw=true',
+    photo:
+      'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Oleksandr-Prysmytskyi.jpg?raw=true',
     name: 'Oleksandr Prysmytskyi',
     position: 'Developer',
     git: 'https://github.com/Prysmytskyi-Oleksandr',
@@ -41,27 +45,27 @@ export default [
     email: 'san2003@ukr.net',
   },
   {
-    photo: '#',
-    name: 'Сергій Денисенко',
+    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Serhii-Denysenko.jpg?raw=true',
+    name: 'Serhii Denysenko',
     position: 'Developer',
-    git: '',
+    git: 'https://github.com/DenysenkoSerhii',
     linkedin: '',
-    email: '',
+    email: 'demissv@gmail.com',
+  },
+    {
+    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Valentyn-Taldykin.jpg?raw=true',
+    name: 'Valentyn Taldykin',
+    position: 'Developer',
+    git: 'https://github.com/VlikToldo',
+    linkedin: 'https://www.linkedin.com/in/valentyn-taldykin-0a1962236',
+    email: 'valiktoldo@gmail.com',
   },
   {
-    photo: '#',
-    name: 'Володимир Ларін',
+    photo: 'https://raw.githubusercontent.com/SergeyShvetskov/video-library/main/src/images/team/Volodymyr-Larin.jpg?raw=true',
+    name: 'Volodymyr Larin',
     position: 'Developer',
     git: '',
-    linkedin: '',
-    email: '',
-  },
-  {
-    photo: '#',
-    name: 'Валентин Талдикін',
-    position: 'Developer',
-    git: '',
-    linkedin: '',
-    email: '',
+    linkedin: 'https://www.linkedin.com/in/Volodymyr-Larin-185257120/',
+    email: 'lvv0820@gmail.com',
   },
 ];

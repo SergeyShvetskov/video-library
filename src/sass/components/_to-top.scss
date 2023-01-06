@@ -1,0 +1,23 @@
+.to__top {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    z-index: 999;
+    opacity: 0;
+      
+    transition: opacity 500ms linear;
+    @media screen and (min-width: 768px) {
+        right: 35px;
+    }
+}
+.to__top--icon {
+    display: block;
+     
+}
+.to__top--icon:hover,
+.to__top--icon:focus {
+    border: 4px solid #ff6b08;
+    border-radius: 50%;
+    }
+.to__top--show {
+    opacity: 1;}

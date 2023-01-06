@@ -53,6 +53,12 @@
     justify-content: center;
 }
 
+.header-library__button-color__current {
+    background-color: var(--ogange-two);
+    border: 1px solid var(--ogange-two);
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}
+
 .header-library__button {
     font-family: var(--font-family);
     font-style: normal;
@@ -75,10 +81,9 @@
 
     &:hover,
     &:focus {
-        background-color: var(--ogange-two);
-        border: 1px solid var(--ogange-two);
         box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
     }
+
 }
 
 @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -110,7 +115,11 @@ screen and (min-resolution: 2dppx) and (max-width: 767px) {
         background-size: cover;
     }
 
-
+    .header-library-logo {
+        display: flex;
+        align-items: baseline;
+    }
+    
     .header-library-logo__text {
         display: inline;
         font-family: var(--font-family);
