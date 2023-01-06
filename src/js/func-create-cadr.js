@@ -3,8 +3,6 @@ import { genres} from './genres.json'
 
 
 function createCard(response) {
-  console.log('роблю картки createCard2');
-  console.log(response.results);
   const linkPoster = 'https://image.tmdb.org/t/p/w400'
   const card = response.results
     .map(({ id, poster_path, title, release_date, genre_ids }) => {
@@ -29,7 +27,6 @@ function createCard(response) {
     }
     )
     .join('');
-   console.log('передаю картки на розмітку');
   cardList.insertAdjacentHTML('beforeend', card);
 }
 

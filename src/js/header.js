@@ -2,10 +2,12 @@ import Notiflix from 'notiflix';
 // import MovesApiService from './fetchMove';
 import { createCard } from './func-create-cadr';
 import { fetchSearchMoves2, fetchTrendMoves } from './fetch';
+import { currentPage } from './pagination-new';
 
 const axios = require('axios').default;
 
 document.addEventListener('DOMContentLoaded', startPage);
+const currentPag = document.querySelector('pagination--current');
 
 const refs = {
   searchForm: document.querySelector('.header-search__wrapper'),
@@ -22,11 +24,12 @@ async function startPage() {
   .catch(err => err.message);
 }
 
-
 async function onSearch(event) {
+  
   event.preventDefault();
+  // currentPag.classList.remove('pagination--current');
   const search = event.currentTarget.elements.query.value.trim();
-  console.log(`search=${search}`);
+  // console.log(`search=${search}`);
   clear();
   if (search !== '') {
  fetchSearchMoves2(search, 1).then(response => {
@@ -43,7 +46,7 @@ async function onSearch(event) {
 
     
   } else {
-    fetchTrendMoves().then(response => {
+    fetchTrendMoves(1).then(response => {
     createCard(response);
   })
   .catch(err => err.message);

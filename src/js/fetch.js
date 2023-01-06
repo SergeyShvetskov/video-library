@@ -5,7 +5,7 @@ import { API_KEY,
 } from './refs'
 const axios = require('axios').default;
   
-async function fetchTrendMoves(page) {
+async function fetchTrendMoves(page=1) {
     const responseAxios = await axios.get(
       `${COMMON_URL}${TRENDING_FilM}?api_key=${API_KEY}&page=${page}`
     );
@@ -23,7 +23,7 @@ async function fetchSearchMoves2(searchQuery, page) {
       `${COMMON_URL}${SEARCH_FilM}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
     );
     try {
-      console.log(responseAxios);
+    //   console.log(responseAxios);
       const response = responseAxios.data;
       // this.page += 1;
       return response;
