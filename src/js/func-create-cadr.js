@@ -1,6 +1,5 @@
 import { cardList } from './refs';
 import { genres} from './genres.json'
-// const { genres } = allGenres;
 
 
 function createCard(response) {
@@ -46,7 +45,7 @@ function findGenresOfMovie(ids) {
     return removedGenres.join(', ');
   }
   if (movieGenres.length === 0) {
-    return (movieGenres = '...');
+    return (movieGenres = 'Genre not found');
   }
   return movieGenres.join(', ');
 }
@@ -61,11 +60,10 @@ function getShortName(string) {
 }
 
 function createYear(data) {
-    // console.log('createYear')
   if (data) {
     return data.slice(0, 4);
   } else {
-    return (data = 'Not found');
+    return (data = 'Year not found');
   }
 }
 

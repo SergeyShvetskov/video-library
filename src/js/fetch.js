@@ -2,11 +2,7 @@ import { API_KEY,
   COMMON_URL,
   TRENDING_FilM,
   SEARCH_FilM, 
-  MOVIES_INFO, 
-  inputRef,
-    cardList
 } from './refs'
-// import allGenres from './genres.json'
 const axios = require('axios').default;
   
 async function fetchTrendMoves(page) {
