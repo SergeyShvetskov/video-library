@@ -6,9 +6,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: calc(100% - 40px);
-        max-width: 703px;
+        max-width: 440px;
         background-color: #FFFFFF;
         padding: 48px 20px 40px 20px;
+        margin-top: 20px;
+        height: 100%;
+        overflow: auto;
     }
 
     .modal-close-btn {
@@ -23,13 +26,22 @@
         background-color: #FFFFFF;
         border: none;
         padding: 0;
+
+    &:hover,
+        &:focus,
+        &:active {
+            fill: var(--ogange-two);
+        }
     }
 
     .modal-movie-img {
         display: flex;
+        object-fit: cover;
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
+        border-radius: 5px;
+        
     }
 
     .modal-movie-title {
@@ -78,14 +90,22 @@
         margin-right: 20px;
         width: 110px;
         height: 44px;
-        background: #FF6B01;
+        background: #FFFFFF;
         border-radius: 5px;
-        border: none;
+        border: 1px solid #000000;
         font-size: 12px;
         line-height: 1.15;
-        color: #FFFFFF;
+        color: #000000;
         text-align: center;
         text-transform: uppercase;
+        &:hover,
+            &:focus,
+            &:active {
+                color: #FFFFFF;
+                border: none;
+                background: var(--ogange-two);
+                cursor: pointer;
+            }
     }
 
     .modal-form-queue-bnt {
@@ -99,7 +119,20 @@
         color: #000000;
         text-align: center;
         text-transform: uppercase;
+        &:hover,
+            &:focus,
+            &:active {
+                color: #FFFFFF;
+                border: none;
+                background: var(--ogange-two);
+                cursor: pointer;
+            }
     }
+        .modal-votes {
+            background-color: var(--ogange-two);
+            border-radius: 5px;
+            padding: 1px 9px 1px 10px;
+        }
 }
 
 /*-----------TABLET--------------*/
@@ -114,6 +147,7 @@
         padding: 40px 72px 40px 36px;
         width: 704px;
         display: flex;
+        overflow: auto;
     }
 
     .modal-close-btn {
@@ -128,12 +162,19 @@
         background-color: #FFFFFF;
         border: none;
         padding: 0;
+
+        &:hover,
+            &:focus,
+            &:active {
+                fill: var(--ogange-two);
+            }
     }
 
     .modal-movie-img {
         width: 264px;
         height: 374px;
         margin-right: 68px;
+        border-radius: 5px;
     }
 
     .modal-movie-title {
@@ -179,16 +220,25 @@
 
     .modal-form-watched-bnt {
         margin-right: 15px;
-        width: 125px;
+         width: 125px;
         height: 44px;
-        background: #FF6B01;
+        background: #FFFFFF;
         border-radius: 5px;
-        border: none;
+        border: 1px solid #000000;
         font-size: 12px;
         line-height: 1.15;
-        color: #FFFFFF;
+        color: #000000;
         text-align: center;
         text-transform: uppercase;
+
+        &:hover, 
+        &:focus,
+        &:active {
+            color: #FFFFFF;
+            border: none;
+            background: var(--ogange-two);
+            cursor: pointer;
+  }
     }
 
     .modal-form-queue-bnt {
@@ -202,7 +252,22 @@
         color: #000000;
         text-align: center;
         text-transform: uppercase;
+
+        &:hover, 
+        &:focus,
+        &:active {
+            color: #FFFFFF;
+            border: none;
+            background: var(--ogange-two);
+            cursor: pointer;
+  }
     }
+    .modal-votes {
+        background-color: var(--ogange-two);
+        border-radius: 5px;
+        padding: 1px 9px 1px 10px;
+    }
+
 }
 
 /*---------------DESKTOP-----------------*/
