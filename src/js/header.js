@@ -32,18 +32,6 @@ async function onSearch(event) {
     svgSize: '75px',
     svgColor: '#ff6b08',
   });
-
-  //    movieGalleryFetch.searchQuery = event.currentTarget.elements.query.value.trim();
-  //  movieGalleryFetch.resetPage();
-  // console.log(movieGalleryFetch.searchQuery);
-
-  //  clear();
-
-  //  if (movieGalleryFetch.searchQuery === "") {
-  //  return;
-  // }
-
-  event.preventDefault();
   // currentPag.classList.remove('pagination--current');
   const search = event.currentTarget.elements.query.value.trim();
   clear();
@@ -62,6 +50,7 @@ async function onSearch(event) {
       })
       .catch(err => Notiflix.Notify.failure(err));
   } else {
+    Notiflix.Loading.remove(400);
     fetchTrendMoves(1)
       .then(response => {
         createCard(response);
