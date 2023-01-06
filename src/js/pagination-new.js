@@ -4,6 +4,7 @@ import {
 } from './refs';
 import { fetchSearchMoves2, fetchTrendMoves } from './fetch';
 import { createCard } from './func-create-cadr';
+import Notiflix from 'notiflix';
 const axios = require('axios').default;
 
 
@@ -121,14 +122,14 @@ function onPaginationClick(event) {
     createCard(response)
 
   })
-  .catch(err => err.message);
+  .catch(err => Notiflix.Notify.failure(err));
      
     } else {
       
       fetchTrendMoves(currentPage).then(response => {
         createCard(response);
       })
-      .catch(err => err.message);
+      .catch(err => Notiflix.Notify.failure(err));
     }
   }
 }
