@@ -1,12 +1,8 @@
-import { 
-  inputRef,
-  cardList
-} from './refs';
+import { inputRef, cardList } from './refs';
 import { fetchSearchMoves2, fetchTrendMoves } from './fetch';
 import { createCard } from './func-create-cadr';
 import Notiflix from 'notiflix';
 const axios = require('axios').default;
-
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -114,24 +110,20 @@ function onPaginationClick(event) {
     cardList.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-
-    if (inputRef.value !== '' ) {
-        fetchSearchMoves2(inputRef.value, currentPage)
-  .then(response => {
-    createCard(response)
-
-  })
-  .catch(err => Notiflix.Notify.failure(err));
-     
+    if (inputRef.value !== '') {
+      fetchSearchMoves2(inputRef.value, currentPage)
+        .then(response => {
+          createCard(response);
+        })
+        .catch(err => Notiflix.Notify.failure(err));
     } else {
-      
-      fetchTrendMoves(currentPage).then(response => {
-        createCard(response);
-      })
-      .catch(err => Notiflix.Notify.failure(err));
+      fetchTrendMoves(currentPage)
+        .then(response => {
+          createCard(response);
+        })
+        .catch(err => Notiflix.Notify.failure(err));
     }
   }
 }
 
 export { currentPage };
-
