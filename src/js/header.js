@@ -18,69 +18,57 @@ const refs = {
 refs.searchForm.addEventListener('submit', onSearch);
 
 async function startPage() {
-  fetchTrendMoves().then(response => {
-    createCard(response);
-  })
-  .catch(err => err.message);
+  fetchTrendMoves()
+    .then(response => {
+      createCard(response);
+    })
+    .catch(err => err.message);
 }
 
 async function onSearch(event) {
+  event.preventDefault();
+  Notiflix.Loading.arrows({
+    clickToClose: false,
+    svgSize: '75px',
+    svgColor: '#ff6b08',
+  });
 
- // event.preventDefault();
- // Notiflix.Loading.arrows({
-  //  clickToClose: false,
-   // svgSize: '75px',
-    //svgColor: '#ff6b08',});
-  
-//    movieGalleryFetch.searchQuery = event.currentTarget.elements.query.value.trim();
+  //    movieGalleryFetch.searchQuery = event.currentTarget.elements.query.value.trim();
   //  movieGalleryFetch.resetPage();
-   // console.log(movieGalleryFetch.searchQuery);
-    
-  //  clear();
- 
-//  if (movieGalleryFetch.searchQuery === "") {
-  //  return;
- // }
+  // console.log(movieGalleryFetch.searchQuery);
 
-  
+  //  clear();
+
+  //  if (movieGalleryFetch.searchQuery === "") {
+  //  return;
+  // }
+
   event.preventDefault();
   // currentPag.classList.remove('pagination--current');
   const search = event.currentTarget.elements.query.value.trim();
-  // console.log(`search=${search}`);
   clear();
   if (search !== '') {
- fetchSearchMoves2(search, 1).then(response => {
-      if (response.results.length === 0) {
-
-      //  console.log('помилка');
-      //  return Notiflix.Notify.failure(
-      //    `Search result not successful. Enter the correct movie name and try again.`
-      //  );
-     // } else {
-      //  createCard(response);
-
-        Notiflix.Loading.remove(400);
-        return Notiflix.Notify.failure(`Search result not successful. Enter the correct movie name and try again.`);
-        }        
-      else {
-        Notiflix.Loading.remove(400);
-        createCard(response);         
-
-      }
-    })
-    .catch(err => Notiflix.Notify.failure(err));
-
-    
+    fetchSearchMoves2(search, 1)
+      .then(response => {
+        if (response.results.length === 0) {
+          Notiflix.Loading.remove(400);
+          return Notiflix.Notify.failure(
+            `Search result not successful. Enter the correct movie name and try again.`
+          );
+        } else {
+          Notiflix.Loading.remove(400);
+          createCard(response);
+        }
+      })
+      .catch(err => Notiflix.Notify.failure(err));
   } else {
-    fetchTrendMoves(1).then(response => {
-    createCard(response);
-  })
-  .catch(err => Notiflix.Notify.failure(err));
-}
+    fetchTrendMoves(1)
+      .then(response => {
+        createCard(response);
+      })
+      .catch(err => Notiflix.Notify.failure(err));
   }
- 
-
-
+}
 
 // const movieGalleryFetch = new MovesApiService();
 
