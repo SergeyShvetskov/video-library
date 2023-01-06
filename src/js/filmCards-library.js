@@ -8,8 +8,8 @@ const refs = {
   libraryCardsList: document.querySelector('.library-cards__list'),
 };
 
-refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
-refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
+// refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
+// refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
 window.addEventListener('load', onWatchedBtnLbClick);
 
 function onWatchedBtnLbClick(e) {
