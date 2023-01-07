@@ -8,8 +8,8 @@ const refs = {
   libraryCardsList: document.querySelector('.library-cards__list'),
 };
 
-// refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
-// refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
+refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
+refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
 window.addEventListener('load', onWatchedBtnLbClick);
 
 function onWatchedBtnLbClick(e) {
@@ -17,8 +17,8 @@ function onWatchedBtnLbClick(e) {
   refs.queueBtnLb.style.border = '1px solid #FFFFFF';
   refs.watchedBtnLb.style.backgroundColor = '#ff6b01';
   refs.watchedBtnLb.style.border = '1px solid #ff6b01';
-//   createWathedGalery();
-    createWatchedList();
+  //   createWathedGalery();
+  createWatchedList();
 }
 
 function onQueueBtnClick(e) {
@@ -27,119 +27,125 @@ function onQueueBtnClick(e) {
   refs.queueBtnLb.style.backgroundColor = '#ff6b01';
   refs.queueBtnLb.style.border = '1px solid #ff6b01';
 
-    createWatchedList()
+  createQueueList();
 }
 
 function createWatchedList() {
-
-
-    refs.libraryCardsList.innerHTML = '';
+  refs.libraryCardsList.innerHTML = '';
   for (let i = 0; i < localStorage.length; i += 1) {
     // console.log(localStorage.length);
     if (localStorage.key(i).includes('watched')) {
-        // console.log(localStorage.getItem(localStorage.key(i)));
-        const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        movieFetch.id = movieId;
-        movieFetch
-    .fetchMoviesInfo()
-    .then(({
-        genres,
-        id,
-        original_title,
-        poster_path,
-        release_date,
-        vote_average,
-     }) => {createCard({
-        genres,
-        id,
-        original_title,
-        poster_path,
-        release_date,
-        vote_average,
-     })}
-)
-      }
+      // console.log(localStorage.getItem(localStorage.key(i)));
+      const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      movieFetch.id = movieId;
+      movieFetch
+        .fetchMoviesInfo()
+        .then(
+          ({
+            genres,
+            id,
+            original_title,
+            poster_path,
+            release_date,
+            vote_average,
+          }) => {
+            createCard({
+              genres,
+              id,
+              original_title,
+              poster_path,
+              release_date,
+              vote_average,
+            });
+          }
+        );
+    }
   }
 }
 
 function createQueueList() {
-
-    refs.libraryCardsList.innerHTML = '';
-    for (let i = 0; i < localStorage.length; i += 1) {
-      // console.log(localStorage.length);
-      if (localStorage.key(i).includes('watched')) {
-          // console.log(localStorage.getItem(localStorage.key(i)));
-          const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
-          movieFetch.id = movieId;
-          movieFetch
-      .fetchMoviesInfo()
-      .then(({
-          genres,
-          id,
-          original_title,
-          poster_path,
-          release_date,
-          vote_average,
-       }) => {createCard({
-          genres,
-          id,
-          original_title,
-          poster_path,
-          release_date,
-          vote_average,
-       })}
-  )
-        }
+  refs.libraryCardsList.innerHTML = '';
+  for (let i = 0; i < localStorage.length; i += 1) {
+    // console.log(localStorage.length);
+    if (localStorage.key(i).includes('queue')) {
+      // console.log(localStorage.getItem(localStorage.key(i)));
+      const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      movieFetch.id = movieId;
+      movieFetch
+        .fetchMoviesInfo()
+        .then(
+          ({
+            genres,
+            id,
+            original_title,
+            poster_path,
+            release_date,
+            vote_average,
+          }) => {
+            createCard({
+              genres,
+              id,
+              original_title,
+              poster_path,
+              release_date,
+              vote_average,
+            });
+          }
+        );
     }
   }
+}
 
 function createCard({
-    genres,
-    id,
-    original_title,
-    poster_path,
-    release_date,
-    vote_average,
- }) {
-    const card = `<li class="cards__item" id="${id}">
+  genres,
+  id,
+  original_title,
+  poster_path,
+  release_date,
+  vote_average,
+}) {
+  const card = `<li class="cards__item" id="${id}">
           <a class="cards__link">
               <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${original_title}" loading="lazy">
           </a>
               <div class="cards__text"><h2 class="cards__name">${getShortName(
-                original_title  
+                original_title
               )}</h2>
-              <p class="cards__genres"> ${changeGanres(
-                genres
-              )} | ${createYear(release_date)}<span class="film-rating"> ${vote_average.toFixed(1)}</span>
+              <p class="cards__genres"> ${changeGanres(genres)} | ${createYear(
+    release_date
+  )}<span class="film-rating"> ${vote_average.toFixed(1)}</span>
               </p>
               </div>
-          </li>`
-   
-    refs.libraryCardsList.insertAdjacentHTML('beforeend', card);
-              
-  }
+          </li>`;
 
-  function getShortName(string) {
-    if (string) {
-      if (string.length > 32) {
-        return string.slice(0, 32) + '...';
-      }
-      return string;
-    }
-  }
+  refs.libraryCardsList.insertAdjacentHTML('beforeend', card);
+}
 
-  function changeGanres(array) {
-    if (array.length > 2) {
-      return `${array[0].name}, ${array[1].name}, other`;
-    } else {
-      return `${array[0].name}, ${array[1].name}`;
+function getShortName(string) {
+  if (string) {
+    if (string.length > 32) {
+      return string.slice(0, 32) + '...';
     }
+    return string;
   }
-  
-  function createYear(data) {
-    if (data) {
-      return data.slice(0, 4);
-    } else {
-      return (data = 'Not found');
-    }
+}
+
+function changeGanres(array) {
+  if (array.length > 2) {
+    return `${array[0].name}, ${array[1].name}, other`;
+  } else {
+    return showGanres(array);
   }
+}
+
+function showGanres(array) {
+  array.map(item => item.name).join(', ');
+}
+
+function createYear(data) {
+  if (data) {
+    return data.slice(0, 4);
+  } else {
+    return (data = 'Not found');
+  }
+}

@@ -2,13 +2,13 @@ import Notiflix from 'notiflix';
 import MovesApiService from './fetchMove';
 import { createCard, findGenresOfMovie, refs } from './filmCards-home';
 
+const movieList = document.querySelector('#card-list');
 const modal = document.querySelector('[data-modal]');
 const movieInfoFetch = new MovesApiService();
 
-refs.cardsList.addEventListener('click', onClickCard);
+movieList.addEventListener('click', onClickCard);
 
 function onClickCard(e) {
-
   document.addEventListener('keydown', closeModalEsc);
   document.addEventListener('click', closeModalClick);
 
@@ -20,11 +20,11 @@ function onClickCard(e) {
     e.path[2].id !== null &&
     e.path[2].id !== undefined
   ) {
-  document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     // console.log(e.path[2].id);
 
     modal.classList.remove('is-hidden');
-    refs.cardsList.removeEventListener('click', onClickCard);
+    movieList.removeEventListener('click', onClickCard);
     movieInfoFetch
       .fetchMoviesInfo()
       .then(data => {
@@ -96,22 +96,20 @@ function createModal({
 }
 
 function closeModalClick(e) {
-  refs.cardsList.addEventListener('click', onClickCard);
+  movieList.addEventListener('click', onClickCard);
   if (e.target === modal) {
     modal.classList.add('is-hidden');
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
 
-    document.body.style.overflow = "";
-  }
-  else if (e.path[2].classList.value === "modal-close-btn") {
-
+    document.body.style.overflow = '';
+  } else if (e.path[2].classList.value === 'modal-close-btn') {
     modal.classList.add('is-hidden');
     localStorage.removeItem('id-movie');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
   }
   switch (e.target.className) {
     case 'modal-form-watched-bnt':
@@ -127,13 +125,13 @@ function closeModalClick(e) {
 }
 
 function closeModalEsc(e) {
-  refs.cardsList.addEventListener('click', onClickCard);
+  movieList.addEventListener('click', onClickCard);
   if (e.keyCode === 27) {
     modal.classList.add('is-hidden');
     localStorage.removeItem('id-movie');
     document.removeEventListener('keydown', closeModalEsc);
     document.removeEventListener('click', closeModalClick);
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
   }
 }
 
@@ -153,4 +151,4 @@ function createQueueInfo() {
   localStorage.setItem(`queue-${movieInfoFetch.id}`, jsonFilmInfo);
 }
 
-  export { modal };
+export { modal };
