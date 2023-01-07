@@ -32,12 +32,25 @@ function onQueueBtnClick(e) {
 
 function createWatchedList() {
   refs.libraryCardsList.innerHTML = '';
-  for (let i = 0; i < localStorage.length; i += 1) {
+
+  if (!(localStorage.getItem('idWatched'))) {return}
+  const idWatchedArray = JSON.parse((localStorage.getItem('idWatched')))
+  // console.log(idWatchedArray)
+  // for (let j = 0; i < idWatchedArray.length; j += 1) 
+  for (let i in idWatchedArray) {
+    // console.log(j, idWatchedArray[j])
+  // }
+
+
+  // for (let i = 0; i < localStorage.length; i += 1) {
     // console.log(localStorage.length);
-    if (localStorage.key(i).includes('watched')) {
+    // if (localStorage.key(i).includes('watched')) {
       // console.log(localStorage.getItem(localStorage.key(i)));
-      const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      movieFetch.id = movieId;
+
+
+      // const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      // movieFetch.id = movieId;
+      movieFetch.id = idWatchedArray[i]
       movieFetch
         .fetchMoviesInfo()
         .then(
@@ -59,18 +72,29 @@ function createWatchedList() {
             });
           }
         );
-    }
+    // }
   }
 }
 
 function createQueueList() {
   refs.libraryCardsList.innerHTML = '';
-  for (let i = 0; i < localStorage.length; i += 1) {
+ 
+  if (!(localStorage.getItem('idQueue'))) {return}
+  const idQueueArray = JSON.parse((localStorage.getItem('idQueue')))
+  // console.log(idQueueArray)
+  // for (let j = 0; i < idQueueArray.length; j += 1) 
+  for (let i in idQueueArray) {
+    // console.log(j, idQueueArray[j])
+  // } 
+  
+  
+  // for (let i = 0; i < localStorage.length; i += 1) {
     // console.log(localStorage.length);
-    if (localStorage.key(i).includes('queue')) {
+    // if (localStorage.key(i).includes('queue')) {
       // console.log(localStorage.getItem(localStorage.key(i)));
-      const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      movieFetch.id = movieId;
+      // const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      // movieFetch.id = movieId;
+      movieFetch.id = idQueueArray[i]
       movieFetch
         .fetchMoviesInfo()
         .then(
@@ -92,7 +116,7 @@ function createQueueList() {
             });
           }
         );
-    }
+    // }
   }
 }
 

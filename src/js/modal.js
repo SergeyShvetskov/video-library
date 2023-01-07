@@ -140,7 +140,22 @@ function createWatchedInfo() {
   movieInfoFetch.id = localStorage.getItem('id-movie');
   console.log(movieInfoFetch.id);
   const jsonFilmInfo = JSON.stringify(movieInfoFetch.id);
-  localStorage.setItem(`watched-${movieInfoFetch.id}`, jsonFilmInfo);
+  // localStorage.setItem(`watched-${movieInfoFetch.id}`, jsonFilmInfo);
+
+  if (!(localStorage.getItem('idWatched'))) {
+    let idWatched = [];
+    idWatched.push(movieInfoFetch.id);
+    console.log('idWatched', idWatched)
+    const jsonIdWatched = JSON.stringify(idWatched);
+    localStorage.setItem(`idWatched`, jsonIdWatched);
+  }
+  else {
+    let idWatchedInfo = JSON.parse(localStorage.getItem(`idWatched`))
+    console.log(idWatchedInfo)
+    if (idWatchedInfo.includes(movieInfoFetch.id)) {return}
+    idWatchedInfo.push(movieInfoFetch.id)
+    localStorage.setItem(`idWatched`, JSON.stringify(idWatchedInfo));
+  }
 }
 
 function createQueueInfo() {
@@ -148,7 +163,22 @@ function createQueueInfo() {
   movieInfoFetch.id = localStorage.getItem('id-movie');
   console.log(movieInfoFetch.id);
   const jsonFilmInfo = JSON.stringify(movieInfoFetch.id);
-  localStorage.setItem(`queue-${movieInfoFetch.id}`, jsonFilmInfo);
+  // localStorage.setItem(`queue-${movieInfoFetch.id}`, jsonFilmInfo);
+
+  if (!(localStorage.getItem('idQueue'))) {
+    let idQueue = [];
+    idQueue.push(movieInfoFetch.id);
+    console.log('idQueue', idQueue)
+    const jsonIdQueue = JSON.stringify(idQueue);
+    localStorage.setItem(`idQueue`, jsonIdQueue);
+  }
+  else {
+    let idQueueInfo = JSON.parse(localStorage.getItem(`idQueue`))
+    console.log(idQueueInfo)
+    if (idQueueInfo.includes(movieInfoFetch.id)) {return}
+    idQueueInfo.push(movieInfoFetch.id)
+    localStorage.setItem(`idQueue`, JSON.stringify(idQueueInfo));
+  }
 }
 
 export { modal };
