@@ -13,6 +13,7 @@ export default class MovesApiService {
     this.searchQuery = '';
     this.page = 1;
     this.id = '';
+    this.itemsPerPage = 20;
   }
 
   async fetchMoviesInfo() {
@@ -31,11 +32,12 @@ export default class MovesApiService {
 
   async fetchTrendMoves() {
     const responseAxios = await axios.get(
-      `${this.COMMON_URL}${this.TRENDING_FilM}?api_key=${this.API_KEY}&page=${this.page}`
+      `${this.COMMON_URL}${this.TRENDING_FilM}?api_key=${this.API_KEY}&page=${this.page}&per_page=${this.itemsPerPage}`
     );
     try {
       console.log(responseAxios);
       const response = responseAxios.data;
+      console.log(response.results);
       this.page += 1;
       return response;
     } catch (error) {
@@ -46,7 +48,7 @@ export default class MovesApiService {
 
   async fetchSearchMoves() {
     const responseAxios = await axios.get(
-      `${this.COMMON_URL}${this.SEARCH_FilM}?api_key=${this.API_KEY}&query=${this.searchQuery}&page=${this.page}`
+      `${this.COMMON_URL}${this.SEARCH_FilM}?api_key=${this.API_KEY}&query=${this.searchQuery}&page=${this.page}&per_page=${this.itemsPerPage}`
     );
     try {
       console.log(responseAxios);
