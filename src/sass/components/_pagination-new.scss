@@ -11,6 +11,8 @@
     border-radius: 5px;
 }
 .tui-pagination {
+    display: flex;
+    justify-content: center;
     margin: 0 !important;
     padding-bottom: 100px;
 }
@@ -28,7 +30,10 @@ align-content: center;
     // font-weight: 500 !important
 }
 .tui-page-btn {
-    padding: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    // padding: 0;
     // width: 40px;
     // border: none;
 }
