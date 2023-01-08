@@ -5,17 +5,33 @@
 
 .tui-page-btn {
     height: 40px;
-    width: 40px;
-    padding: 60px 0;
+    // width: 40px;
+    // padding: 60px 0;
     // border: none;
     border-radius: 5px;
 }
-
-.tui-pagination .tui-page-btn {
-    border: none;
-    width: 40px;
+.tui-pagination {
+    margin: 0 !important;
+    padding-bottom: 100px;
 }
-
+.tui-pagination .tui-page-btn {
+    // text-align: center !important;
+display: flex;
+// padding: 5px 0;
+// align-items: center !important;
+align-content: center;
+    // display: block;
+    vertical-align: middle !important;
+    width: 40px !important;
+    border: none !important;
+    // font-size: 12px !important;
+    // font-weight: 500 !important
+}
+.tui-page-btn {
+    padding: 0;
+    // width: 40px;
+    // border: none;
+}
 
 //--------------pagination-new------------
 .pagination-container {
