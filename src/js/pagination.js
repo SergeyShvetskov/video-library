@@ -1,76 +1,272 @@
-// import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
-// import MovesApiService from './fetchMove';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+import MovesApiService from './fetchMove';
+import allGenres from './genres.json';
+import { Notify } from 'notiflix';
 
-// const refs = {
-//   cardsListLibrary: document.querySelector('.cards__list--library'),
-//   cardsList: document.querySelector('.cards__list'),
-// };
+const refs = {
+  cardsListLibrary: document.querySelector('.cards__list--library'),
+  cardsList: document.querySelector('.cards__list'),
+  pagination: document.querySelector('.tui-pagination'),
+  searchForm: document.querySelector('.header-search__wrapper'),
+};
 
-// const container = document.getElementById('pagination');
+const container = document.getElementById('pagination');
 
-// const PER_PAGE = 20;
+const itemsPerPage = 20;
 
-// const moves = new MovesApiService();
+const moves = new MovesApiService();
 
-// const options = {
-//   totalItems: 1000,
-//   itemsPerPage: PER_PAGE,
-//   visiblePages: 5,
-//   page: 1,
-//   centerAlign: false,
-//   firstItemClassName: 'tui-first-child',
-//   lastItemClassName: 'tui-last-child',
-//   template: {
-//     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-//     currentPage:
-//       '<strong class="tui-page-btn tui-is-selected" id="current">{{page}}</strong>',
-//     moveButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</a>',
-//     disabledMoveButton:
-//       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</span>',
-//     moreButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-//       '<span class="tui-ico-ellip">...</span>' +
-//       '</a>',
-//   },
-// };
+const options = {
+  totalItems: 1000,
+  itemsPerPage: itemsPerPage,
+  visiblePages: 5,
+  page: 1,
+  centerAlign: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected" id="current">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
 
-// const pagination = new Pagination(container, options);
+const pagination = new Pagination(container, options);
 
-// const page = pagination.getCurrentPage();
+const page = pagination.getCurrentPage();
 
-// function loadMoreTrendMoves(event) {
-//   const currentPage = event.page;
+function getShortName(string) {
+  if (string) {
+    if (string.length >= 32) {
+      return string.substr(0, 32) + '...';
+    }
+    return string;
+  }
+}
+const { genres } = allGenres;
+function findGenresOfMovie(ids) {
+  const arr = ids.flatMap(id => genres.filter(element => element.id === id));
+  let movieGenres = arr.map(el => el.name);
+  if (movieGenres.length > 2) {
+    const removedGenres = movieGenres.splice(0, 2);
+    removedGenres.push('Other');
 
-//   moves.fetchTrendMoves().then(response => {
-//     response.page = currentPage;
+    return removedGenres.join(', ');
+  }
+  if (movieGenres.length === 0) {
+    return (movieGenres = 'Not found');
+  }
+  return movieGenres.join(', ');
+}
+function createYear(data) {
+  if (data) {
+    return data.slice(0, 4);
+  } else {
+    return (data = 'Not found');
+  }
+}
 
-//     const markup = function createCard(response) {
-//       const card = response.results
-//         .map(
-//           ({ id, poster_path, title, release_date, genre_ids }) => `<li class="cards__item" id="${id}">
-//         <a class="cards__link">
-//             <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
-//         </a>
-//             <div class="cards__text"><h2 class="cards__name">${getShortName(
-//               title
-//             )}</h2>
-//             <p class="cards__genres"> ${findGenresOfMovie(
-//               genre_ids
-//             )} | ${createYear(release_date)}</p>
-//             </div>
-//         </li>`
-//           )
-//         .join('');
-//       refs.cardsList.insertAdjacentHTML("beforeend", card);
-//     };
-//     refs.cardsList.innerHTML = markup;
-//   });
-// }
+function loadMoreTrendMoves(event) {
+  const currentPage = event.page;
+  console.log(currentPage);
 
-// pagination.on('beforeMove', loadMoreTrendMoves);
+  moves
+    .fetchTrendMoves(currentPage)
+    .then(response => {
+      response.page = currentPage;
+
+      const markup = response.results
+        .map(
+          ({
+            id,
+            poster_path,
+            title,
+            release_date,
+            genre_ids,
+          }) => `<li class="cards__item" id="${id}">
+        <a class="cards__link">
+            <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
+        </a>
+            <div class="cards__text"><h2 class="cards__name">${getShortName(
+              title
+            )}</h2>
+            <p class="cards__genres"> ${findGenresOfMovie(
+              genre_ids
+            )} | ${createYear(release_date)}</p>
+            </div>
+        </li>`
+        )
+        .join('');
+      refs.cardsList.innerHTML = markup;
+    })
+    .catch(error => {
+      Notify.failure(error.message);
+      refs.pagination.classList.add('is-hidden');
+    });
+}
+
+pagination.on('beforeMove', loadMoreTrendMoves);
+
+moves
+  .fetchTrendMoves(page)
+  .then(({ results, total }) => {
+    if (results.length === 0) {
+      Notify.warning(`We don\`t find any moves 🤷‍♀️`);
+      return;
+    }
+
+    pagination.reset(total);
+    const markup = results
+      .map(
+        ({
+          id,
+          poster_path,
+          title,
+          release_date,
+          genre_ids,
+        }) => `<li class="cards__item" id="${id}">
+        <a class="cards__link">
+            <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
+        </a>
+            <div class="cards__text"><h2 class="cards__name">${getShortName(
+              title
+            )}</h2>
+            <p class="cards__genres"> ${findGenresOfMovie(
+              genre_ids
+            )} | ${createYear(release_date)}</p>
+            </div>
+        </li>`
+      )
+      .join('');
+
+    refs.cardsList.insertAdjacentHTML('beforeend', markup);
+
+    refs.pagination.classList.remove('is-hidden');
+  })
+  .catch(error => {
+    Notify.failure(error.message);
+  });
+
+const loadMoreMovesByQuery = event => {
+  const currentPage = event.page;
+  moves
+    .fetchSearchMoves(currentPage)
+    .then(({ results }) => {
+      const markup = results
+        .map(
+          ({
+            id,
+            poster_path,
+            title,
+            release_date,
+            genre_ids,
+          }) => `<li class="cards__item" id="${id}">
+        <a class="cards__link">
+            <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
+        </a>
+            <div class="cards__text"><h2 class="cards__name">${getShortName(
+              title
+            )}</h2>
+            <p class="cards__genres"> ${findGenresOfMovie(
+              genre_ids
+            )} | ${createYear(release_date)}</p>
+            </div>
+        </li>`
+        )
+        .join('');
+
+      refs.cardsList.innerHTML = markup;
+    })
+    .catch(error => {
+      Notify.failure(error.message);
+    });
+};
+
+const handleSubmit = event => {
+  event.preventDefault();
+
+  const {
+    elements: { query },
+  } = event.target;
+  const searchQuery = query.value.trim();
+  // console.log(searchQuery);
+
+  if (!searchQuery) {
+    Notify.failure('Input query!!!');
+    return;
+  }
+
+  if (moves.query === searchQuery) {
+    Notify.info('Already show!');
+    return;
+  }
+
+  moves.query = searchQuery;
+  // console.log(moves.query);
+
+  refs.cardsList.innerHTML = '';
+
+  moves
+    .fetchSearchMoves(page)
+    .then(({ results, total }) => {
+      if (results.length === 0) {
+        Notify.warning(`We don\`t find any moves by ${searchQuery} 🤷‍♀️`);
+        refs.pagination.classList.add('is-hidden');
+        return;
+      }
+
+      pagination.off('beforeMove', loadMoreTrendMoves);
+      pagination.off('beforeMove', loadMoreMovesByQuery);
+      pagination.on('beforeMove', loadMoreMovesByQuery);
+
+      pagination.reset(total);
+
+      const markup = results
+        .map(
+          ({
+            id,
+            poster_path,
+            title,
+            release_date,
+            genre_ids,
+          }) => `<li class="cards__item" id="${id}">
+        <a class="cards__link">
+            <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
+        </a>
+            <div class="cards__text"><h2 class="cards__name">${getShortName(
+              title
+            )}</h2>
+            <p class="cards__genres"> ${findGenresOfMovie(
+              genre_ids
+            )} | ${createYear(release_date)}</p>
+            </div>
+        </li>`
+        )
+        .join('');
+
+      refs.cardsList.insertAdjacentHTML('beforeend', markup);
+
+      refs.pagination.classList.remove('is-hidden');
+    })
+    .catch(error => {
+      Notify.failure(error.message);
+      refs.pagination.classList.add('is-hidden');
+    });
+
+  event.target.reset();
+};
+
+refs.searchForm.addEventListener('submit', handleSubmit);
