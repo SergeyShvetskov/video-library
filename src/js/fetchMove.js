@@ -36,7 +36,6 @@ export default class MovesApiService {
     try {
       console.log(responseAxios);
       const response = responseAxios.data;
-      this.page += 1;
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);
@@ -51,7 +50,6 @@ export default class MovesApiService {
     try {
       console.log(responseAxios);
       const response = responseAxios.data;
-      this.page += 1;
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);
