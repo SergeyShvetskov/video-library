@@ -1,13 +1,13 @@
 import Notiflix from 'notiflix';
 // import MovesApiService from './fetchMove';
 import { createCard } from './func-create-cadr';
-import { fetchSearchMoves2, fetchTrendMoves } from './fetch';
+import { fetchSearchMove, fetchTrendMoves } from './fetch';
 import { currentPage } from './pagination-new';
 
 const axios = require('axios').default;
 
 document.addEventListener('DOMContentLoaded', startPage);
-const currentPag = document.querySelector('pagination--current');
+// const currentPag = document.querySelector('pagination--current');
 
 const refs = {
   searchForm: document.querySelector('.header-search__wrapper'),
@@ -32,11 +32,10 @@ async function onSearch(event) {
     svgSize: '75px',
     svgColor: '#ff6b08',
   });
-  // currentPag.classList.remove('pagination--current');
   const search = event.currentTarget.elements.query.value.trim();
   clear();
   if (search !== '') {
-    fetchSearchMoves2(search, 1)
+    fetchSearchMove(search, 1)
       .then(response => {
         if (response.results.length === 0) {
           Notiflix.Loading.remove(400);

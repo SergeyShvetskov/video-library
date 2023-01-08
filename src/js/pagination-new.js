@@ -1,5 +1,5 @@
 import { inputRef, cardList } from './refs';
-import { fetchSearchMoves2, fetchTrendMoves } from './fetch';
+import { fetchSearchMove, fetchTrendMoves } from './fetch';
 import { createCard } from './func-create-cadr';
 import Notiflix from 'notiflix';
 const axios = require('axios').default;
@@ -111,7 +111,7 @@ function onPaginationClick(event) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (inputRef.value !== '') {
-      fetchSearchMoves2(inputRef.value, currentPage)
+      fetchSearchMove(inputRef.value, currentPage)
         .then(response => {
           createCard(response);
         })

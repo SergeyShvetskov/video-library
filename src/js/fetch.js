@@ -15,8 +15,8 @@ async function fetchTrendMoves(page = 1) {
     //   console.error(error);
   }
 }
-async function fetchSearchMoves2(searchQuery, page) {
-  //   console.log(`Працює fetchSearchMoves2 `);
+async function fetchSearchMove(searchQuery, page) {
+  //   console.log(`Працює fetchSearchMove `);
   const responseAxios = await axios.get(
     `${COMMON_URL}${SEARCH_FilM}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
   );
@@ -31,4 +31,4 @@ async function fetchSearchMoves2(searchQuery, page) {
   }
 }
 
-export { fetchTrendMoves, fetchSearchMoves2 };
+export { fetchTrendMoves, fetchSearchMove };
