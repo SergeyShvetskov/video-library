@@ -146,7 +146,7 @@ screen and (min-resolution: 2dppx) and (min-width: 768px) {
     }
 }
 
-//------- adaptive(1200px)-------
+//------- adaptive(1280px)-------
 
 
 @media screen and (min-width: 1280px) {
@@ -178,9 +178,9 @@ screen and (min-resolution: 2dppx) and (min-width: 768px) {
         }
     }
 
-    // @media screen and (min-device-pixel-ratio: 3) and (min-width: 1200px),
-    // screen and (min-resolution: 192dpi) and (min-width: 1200px),
-    // screen and (min-resolution: 2dppx) and (min-width: 1200px) {
+    // @media screen and (min-device-pixel-ratio: 3) and (min-width: 1280px),
+    // screen and (min-resolution: 192dpi) and (min-width: 1280px),
+    // screen and (min-resolution: 2dppx) and (min-width: 1280px) {
     //     .header-library{
     //         background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
     //         url('../images/header-watched-1280/Rectangle 1@3x-min.jpg');
