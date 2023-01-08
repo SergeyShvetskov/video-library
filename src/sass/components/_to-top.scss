@@ -21,6 +21,8 @@
     background: var(--ogange);
     border: 2px solid var(--ogange);
     border-radius: 50%;
+    transition: var(--timing-function);
+    cursor: pointer;
     }
 .to__top--show {
     opacity: 1;}
