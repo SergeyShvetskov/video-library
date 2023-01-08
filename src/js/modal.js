@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import MovesApiService from './fetchMove';
 import { createCard, findGenresOfMovie, refs } from './filmCards-home';
+import { posterNull } from './posterNull';
 
 const movieList = document.querySelector('#card-list');
 const modal = document.querySelector('[data-modal]');
@@ -92,6 +93,7 @@ function createModal({
   overview,
 }) {
   let genresToStr = genres.map(x => x.name).join(', ');
+
   const modalMovie = `<div class="modal-window" id="${id}">
     <button type="button" class="modal-close-btn" data-modal-close>
       <svg class="modal-close-btn-icon" width="30" height="30">
@@ -100,7 +102,7 @@ function createModal({
     </button>
     <img
       class="modal-movie-img"
-      src="https://image.tmdb.org/t/p/w400${poster_path}"
+      src="${posterNull(poster_path)}"
       alt="${title}"
     />
     <div modal-tab-container>
