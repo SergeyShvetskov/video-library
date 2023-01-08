@@ -31,6 +31,7 @@
         &:focus,
         &:active {
             fill: var(--ogange-two);
+
         }
     }
 
@@ -101,8 +102,9 @@
         &:hover,
             &:focus,
             &:active {
-                color: #FFFFFF;
-                border: none;
+                // color: #FFFFFF;
+                // border: none;
+                box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
                 background: var(--ogange-two);
                 cursor: pointer;
             }
@@ -122,8 +124,9 @@
         &:hover,
             &:focus,
             &:active {
-                color: #FFFFFF;
-                border: none;
+                // color: #FFFFFF;
+                // border: none;
+                box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
                 background: var(--ogange-two);
                 cursor: pointer;
             }
@@ -234,8 +237,9 @@
         &:hover, 
         &:focus,
         &:active {
-            color: #FFFFFF;
-            border: none;
+            // color: #FFFFFF;
+            // border: none;
+            box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
             background: var(--ogange-two);
             cursor: pointer;
   }
@@ -256,8 +260,9 @@
         &:hover, 
         &:focus,
         &:active {
-            color: #FFFFFF;
-            border: none;
+            // color: #FFFFFF;
+            // border: none;
+            box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
             background: var(--ogange-two);
             cursor: pointer;
   }
