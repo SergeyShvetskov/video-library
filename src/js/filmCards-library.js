@@ -1,6 +1,7 @@
 import MovesApiService from './fetchMove';
 // import createCard from './filmCards-home';
 const movieFetch = new MovesApiService();
+import { posterNull } from './posterNull';
 
 const refs = {
   watchedBtnLb: document.querySelector('.watchedBtnLb'),
@@ -139,7 +140,9 @@ function createCard({
 }) {
   const card = `<li class="cards__item" id="${id}">
           <a class="cards__link">
-              <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${original_title}" loading="lazy">
+              <img class="cards__img" src="${posterNull(
+                poster_path
+              )}" alt="${original_title}" loading="lazy">
           </a>
               <div class="cards__text"><h2 class="cards__name">${getShortName(
                 original_title

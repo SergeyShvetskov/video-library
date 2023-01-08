@@ -4,9 +4,20 @@
 }
 
 .tui-page-btn {
-    // border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding: 60px 0;
+    // border: none;
+    border-radius: 5px;
 }
 
+.tui-pagination .tui-page-btn {
+    border: none;
+    width: 40px;
+}
+
+
+//--------------pagination-new------------
 .pagination-container {
     display: flex;
     align-items: center;
