@@ -14,6 +14,7 @@
     width: 45px;
     height: 45px;
     fill:var(--ogange);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 .to__top--icon:hover,
 .to__top--icon:focus {
@@ -21,7 +22,7 @@
     background: var(--ogange);
     border: 2px solid var(--ogange);
     border-radius: 50%;
-    transition: var(--timing-function);
+    
     cursor: pointer;
     }
 .to__top--show {
