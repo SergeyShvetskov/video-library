@@ -38,6 +38,11 @@ align-content: center;
     // border: none;
 }
 
+.tui-last,
+.tui-first {
+    display: none !important;
+}
+
 //--------------pagination-new------------
 .pagination-container {
     display: flex;
