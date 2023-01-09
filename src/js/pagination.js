@@ -4,13 +4,12 @@ import 'tui-pagination/dist/tui-pagination.css';
 import allGenres from './genres.json';
 import { Notify } from 'notiflix';
 import Notiflix from 'notiflix';
-import {
-  fetchSearchMove,
-  fetchTrendMoves,
-  totalPagePagination2,
-} from './fetch';
+import { fetchSearchMove, totalPagePagination2 } from './fetch';
 import { createCard } from './func-create-cadr';
 import { inputRef, totalPagePagination } from './refs';
+
+import { API_KEY, COMMON_URL, TRENDING_FilM, SEARCH_FilM } from './refs';
+const axios = require('axios').default;
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
@@ -54,8 +53,8 @@ const options = {
 };
 
 function onSubmit(event) {
-  pagination.on('beforeMove', loadMoreTrendMoves);
-  pagination.reset();
+  // pagination.on('beforeMove', loadMoreTrendMoves);
+  // pagination.reset();
 }
 
 const pagination = new Pagination(container, options);
@@ -66,33 +65,42 @@ function loadMoreTrendMoves(event) {
   if (inputRef.value !== '') {
     fetchSearchMove(inputRef.value, event.page)
       .then(response => {
-        console.log(`response.total_results:${response.total_results} event.page ${event.page}`);
+        console.log(
+          `response.total_results:${response.total_results} event.page ${event.page}`
+        );
         refs.cardsList.innerHTML = '';
         createCard(response);
-        if(event.page === 1) pagination.reset(response.total_results);
+        if (event.page === 1) pagination.reset(response.total_results);
       })
       .catch(err => Notiflix.Notify.failure(err));
   } else {
     fetchTrendMoves(event.page)
       .then(response => {
-        let total = await  
-        console.log(`response.total_results:${response.total_results} event.page ${event.page}`);
-        // let total = response.total_results;
-        // if (response.total_results > 500) {
-        //   total = 500; }
-        // console.log(total);
-<<<<<<< Updated upstream
-        // pagination.setTotalItems(response.total_results);
-=======
-        // pagination.setTotalItems(total)
-        
->>>>>>> Stashed changes
+        console.log(
+          ` fetchTrendMoves response.total_results:${response.total_results} event.page ${event.page}`
+        );
         refs.cardsList.innerHTML = '';
         createCard(response);
-        if(event.page === 1) pagination.reset(response.total_results);
+        if (event.page === 1) pagination.reset(response.total_results);
       })
       .catch(err => Notiflix.Notify.failure(err));
   }
 }
 
 pagination.on('afterMove', loadMoreTrendMoves);
+
+async function fetchTrendMoves(page = 1) {
+  const responseAxios = await axios.get(
+    `${COMMON_URL}${TRENDING_FilM}?api_key=${API_KEY}&page=${page}`
+  );
+  try {
+    console.log(responseAxios.data.total_results);
+    const response = responseAxios.data;
+    totalPagePagination = response.total_results;
+    console.log(response.total_results);
+
+    return response;
+  } catch (error) {
+    Notiflix.Notify.failure(error);
+  }
+}
