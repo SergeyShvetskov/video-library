@@ -4,9 +4,13 @@ import 'tui-pagination/dist/tui-pagination.css';
 import allGenres from './genres.json';
 import { Notify } from 'notiflix';
 import Notiflix from 'notiflix';
-import { fetchSearchMove, fetchTrendMoves } from './fetch';
+import {
+  fetchSearchMove,
+  fetchTrendMoves,
+  totalPagePagination2,
+} from './fetch';
 import { createCard } from './func-create-cadr';
-import { inputRef } from './refs';
+import { inputRef, totalPagePagination } from './refs';
 
 const refs = {
   cardsListLibrary: document.querySelector('.cards__list--library'),
@@ -21,9 +25,9 @@ const container = document.getElementById('pagination');
 
 const itemsPerPage = 20;
 // const totalItems = 100;
-
+console.log(totalPagePagination);
 const options = {
-  totalItems: 1000,
+  totalItems: 1,
   itemsPerPage: itemsPerPage,
   visiblePages: 5,
   page: 1,
@@ -50,6 +54,7 @@ const options = {
 };
 
 function onSubmit(event) {
+  pagination.on('beforeMove', loadMoreTrendMoves);
   pagination.reset();
 }
 
@@ -73,9 +78,9 @@ function loadMoreTrendMoves(event) {
         console.log(`response.total_results:${response.total_results}`);
         // let total = response.total_results;
         // if (response.total_results > 500) {
-        //   total = 500; } 
+        //   total = 500; }
         // console.log(total);
-        // pagination.setTotalItems(total)
+        // pagination.setTotalItems(response.total_results);
         refs.cardsList.innerHTML = '';
         createCard(response);
       })
