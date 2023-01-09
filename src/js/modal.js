@@ -126,6 +126,12 @@ function createModal({
 
       <h4 class="modal-movie-about-title">About</h4>
       <p class="modal-movie-description">${overview}</p>
+      <div class="modal-btns">
+      <button type="button" class="modal-form-watched-bnt">
+        Add to watched
+      </button>
+      <button type="button" class="modal-form-queue-bnt">Add to queue</button>
+    </div>
     </div>
   </div>`;
 
