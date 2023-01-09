@@ -7,11 +7,43 @@ const refs = {
   watchedBtnLb: document.querySelector('.watchedBtnLb'),
   queueBtnLb: document.querySelector('.queueBtnLb'),
   libraryCardsList: document.querySelector('.library-cards__list'),
+  modalWindow: document.querySelector('[data-modal'),
+  movieList: document.querySelector('#card-list'),
 };
 
 refs.watchedBtnLb.addEventListener('click', onWatchedBtnLbClick);
 refs.queueBtnLb.addEventListener('click', onQueueBtnClick);
 window.addEventListener('load', onWatchedBtnLbClick);
+refs.movieList.addEventListener('click', onClickLibCard);
+function onClickLibCard(e) {
+  if (!refs.modalWindow.classList.contains('is-hidden')) {
+    // console.log('MODAL-OPEN');
+    document.addEventListener('click', updateCardList);
+
+    function updateCardList(e) {
+      // console.log(e.target);
+      switch (e.target.className) {
+        case 'modal-form-watched-bnt add-watched':
+          createWatchedList();
+          break;
+
+        case 'modal-form-watched-bnt remove-watched':
+          createWatchedList();
+          break;
+
+        case 'modal-form-queue-bnt add-queue':
+          createQueueList();
+          break;
+
+        case 'modal-form-queue-bnt remove-queue':
+          createQueueList();
+          break;
+
+        default:
+      }
+    }
+  }
+}
 
 function onWatchedBtnLbClick(e) {
   refs.queueBtnLb.style.backgroundColor = 'transparent';
@@ -48,30 +80,6 @@ function createWatchedList() {
       // console.log(localStorage.getItem(localStorage.key(i)));
       let movie = JSON.parse(localStorage.getItem(localStorage.key(i)));
       createCard(movie);
-
-      // const movieId = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      // movieFetch.id = movieId;
-      // movieFetch.id = idWatchedArray[i]
-      // movieFetch
-      //   .fetchMoviesInfo()
-      //   .then(
-      //     ({
-      //       genres,
-      //       id,
-      //       original_title,
-      //       poster_path,
-      //       release_date,
-      //       vote_average,
-      //     }) => {
-      //       createCard({
-      //         genres,
-      //         id,
-      //         original_title,
-      //         poster_path,
-      //         release_date,
-      //         vote_average,
-      //       });
-      //     }
     }
   }
 }
