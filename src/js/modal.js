@@ -108,11 +108,11 @@ function createModal({
       <table>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-votes">Vote / Votes</td>
-          <td class="modal-movie-data"><span class="modal-votes">${vote_average}</span> / ${vote_count}</td>
+          <td class="modal-movie-data"><span class="modal-votes">${vote_average.toFixed(1)}</span> / ${vote_count}</td>
         </tr>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-popularity">Popularity</td>
-          <td class="modal-movie-data">${popularity}</td>
+          <td class="modal-movie-data">${Math.round(popularity)}</td>
         </tr>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-original-title">Original title</td>
@@ -213,6 +213,7 @@ function createWatchedInfo() {
   // console.log('clickAddWatched');
   const BtnAddWatched = document.querySelector('.add-watched');
   BtnAddWatched.style.backgroundColor = '#ff6b01';
+  BtnAddWatched.style.border = 'none';
   BtnAddWatched.textContent = 'remove from watched';
 
   movieInfoFetch.id = localStorage.getItem('id-movie');
@@ -265,6 +266,7 @@ function createQueueInfo() {
   // console.log('clickAddQueue');
   const BtnAddQueue = document.querySelector('.add-queue');
   BtnAddQueue.style.backgroundColor = '#ff6b01';
+  BtnAddQueue.style.border = 'none';
   BtnAddQueue.textContent = 'remove from queue';
 
   movieInfoFetch.id = localStorage.getItem('id-movie');
