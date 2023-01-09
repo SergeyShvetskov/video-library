@@ -5,6 +5,8 @@ import { posterNull } from './posterNull';
 
 const movieList = document.querySelector('#card-list');
 const modal = document.querySelector('[data-modal]');
+const modalBox = document.querySelector('.modal-box');
+const modalCloseBtn = document.querySelector('[data-modal-close]');
 const movieInfoFetch = new MovesApiService();
 
 movieList.addEventListener('click', onClickCard);
@@ -12,6 +14,7 @@ movieList.addEventListener('click', onClickCard);
 function onClickCard(e) {
   document.addEventListener('keydown', closeModalEsc);
   document.addEventListener('click', closeModalClick);
+  modalCloseBtn.addEventListener('click', closeModalBtnClick);
 
   movieInfoFetch.id = e.path[2].id;
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
@@ -94,18 +97,13 @@ function createModal({
 }) {
   let genresToStr = genres.map(x => x.name).join(', ');
 
-  const modalMovie = `<div class="modal-window" id="${id}">
-    <button type="button" class="modal-close-btn" data-modal-close>
-      <svg class="modal-close-btn-icon" width="30" height="30">
-        <path d="M23.734 10.304l-1.504-1.504-5.963 5.962-5.962-5.962-1.504 1.504 5.962 5.962-5.962 5.963 1.504 1.504 5.962-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.962z"></path>
-      </svg>
-    </button>
+  const modalMovie = `<div class="modal-js" id="${id}">
     <img
       class="modal-movie-img"
       src="${posterNull(poster_path)}"
       alt="${title}"
     />
-    <div modal-tab-container>
+    <div>
       <h2 class="modal-movie-title">${title}</h2>
       <table>
         <tr class="modal-row">
@@ -128,16 +126,10 @@ function createModal({
 
       <h4 class="modal-movie-about-title">About</h4>
       <p class="modal-movie-description">${overview}</p>
-      <div class="modal-btns">
-        <button type="button" class="modal-form-watched-bnt">
-          Add to watched
-        </button>
-        <button type="button" class="modal-form-queue-bnt">Add to queue</button>
-      </div>
     </div>
   </div>`;
 
-  modal.innerHTML = modalMovie;
+  modalBox.innerHTML = modalMovie;
 }
 
 function closeModalClick(e) {
@@ -148,17 +140,23 @@ function closeModalClick(e) {
     localStorage.removeItem('movie-info');
     document.removeEventListener('click', closeModalClick);
     document.removeEventListener('keydown', closeModalEsc);
+    modalCloseBtn.removeEventListener('click', closeModalBtnClick);
 
     document.body.style.overflow = '';
-  } else if (e.path[2].classList.value === 'modal-close-btn') {
-    modal.classList.add('is-hidden');
-    localStorage.removeItem('id-movie');
-    localStorage.removeItem('movie-info');
-    document.removeEventListener('click', closeModalClick);
-    document.removeEventListener('keydown', closeModalEsc);
-    document.body.style.overflow = '';
   }
+
+   //else if (e.path[2].classList.value === 'modal-close-btn') {
+  // else if (e.target === modalCloseBtn) { 
+  // modal.classList.add('is-hidden');
+  //   localStorage.removeItem('id-movie');
+  //   localStorage.removeItem('movie-info');
+  //   document.removeEventListener('click', closeModalClick);
+  //   document.removeEventListener('keydown', closeModalEsc);
+  //   document.body.style.overflow = '';
+  //}
   // console.log(e.target.className);
+
+  
   switch (e.target.className) {
     case 'modal-form-watched-bnt add-watched':
       createWatchedInfo();
@@ -180,6 +178,18 @@ function closeModalClick(e) {
   }
 }
 
+ function closeModalBtnClick() {
+    modal.classList.add('is-hidden');
+    localStorage.removeItem('id-movie');
+    localStorage.removeItem('movie-info');
+    document.removeEventListener('click', closeModalClick);
+    document.removeEventListener('keydown', closeModalEsc);
+    modalCloseBtn.removeEventListener('click', closeModalBtnClick);
+    document.body.style.overflow = '';
+  }
+
+
+
 function closeModalEsc(e) {
   movieList.addEventListener('click', onClickCard);
   if (e.keyCode === 27) {
@@ -188,6 +198,7 @@ function closeModalEsc(e) {
     localStorage.removeItem('movie-info');
     document.removeEventListener('keydown', closeModalEsc);
     document.removeEventListener('click', closeModalClick);
+    modalCloseBtn.removeEventListener('click', closeModalBtnClick);
     document.body.style.overflow = '';
   }
 }
