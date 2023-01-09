@@ -66,27 +66,33 @@ function loadMoreTrendMoves(event) {
   if (inputRef.value !== '') {
     fetchSearchMove(inputRef.value, event.page)
       .then(response => {
-        console.log(`response.total_results:${response.total_results}`);
-
+        console.log(`response.total_results:${response.total_results} event.page ${event.page}`);
         refs.cardsList.innerHTML = '';
         createCard(response);
+        if(event.page === 1) pagination.reset(response.total_results);
       })
       .catch(err => Notiflix.Notify.failure(err));
   } else {
     fetchTrendMoves(event.page)
       .then(response => {
-        console.log(`response.total_results:${response.total_results}`);
+        let total = await  
+        console.log(`response.total_results:${response.total_results} event.page ${event.page}`);
         // let total = response.total_results;
         // if (response.total_results > 500) {
         //   total = 500; }
         // console.log(total);
+<<<<<<< Updated upstream
         // pagination.setTotalItems(response.total_results);
+=======
+        // pagination.setTotalItems(total)
+        
+>>>>>>> Stashed changes
         refs.cardsList.innerHTML = '';
         createCard(response);
+        if(event.page === 1) pagination.reset(response.total_results);
       })
       .catch(err => Notiflix.Notify.failure(err));
   }
 }
 
-// pagination.setTotalItems(totalItems)
-pagination.on('beforeMove', loadMoreTrendMoves);
+pagination.on('afterMove', loadMoreTrendMoves);

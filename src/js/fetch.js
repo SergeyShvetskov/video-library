@@ -4,11 +4,15 @@ const axios = require('axios').default;
 import { totalPagePagination } from './refs';
 // let totalPagePagination2 = '10000';
 
-async function fetchTrendMoves(page = 1) {
+async function fetchTrendMoves(page) {
   const responseAxios = await axios.get(
     `${COMMON_URL}${TRENDING_FilM}?api_key=${API_KEY}&page=${page}`
   );
   try {
+<<<<<<< Updated upstream
+=======
+      console.log(responseAxios.data.total_results);
+>>>>>>> Stashed changes
     const response = responseAxios.data;
     totalPagePagination = response.total_results;
     console.log(response.total_results);
@@ -16,7 +20,6 @@ async function fetchTrendMoves(page = 1) {
     return response;
   } catch (error) {
     Notiflix.Notify.failure(error);
-    //   console.error(error);
   }
 }
 async function fetchSearchMove(searchQuery, page) {
@@ -26,13 +29,16 @@ async function fetchSearchMove(searchQuery, page) {
   );
   try {
     const response = responseAxios.data;
+<<<<<<< Updated upstream
     totalPagePagination = response.total_results;
     console.log(response.total_results);
 
+=======
+>>>>>>> Stashed changes
     return response;
   } catch (error) {
     Notiflix.Notify.failure(error);
-    console.error(error);
+    
   }
 }
 
