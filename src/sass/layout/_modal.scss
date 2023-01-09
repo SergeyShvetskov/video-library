@@ -14,6 +14,7 @@
         overflow: auto;
     }
 
+
     .modal-close-btn {
         position: absolute;
         top: 8px;
@@ -34,6 +35,7 @@
 
         }
     }
+
 
     .modal-movie-img {
         display: flex;
@@ -149,7 +151,6 @@
         background-color: #FFFFFF;
         padding: 40px 72px 40px 36px;
         width: 704px;
-        display: flex;
         overflow: auto;
     }
 
@@ -172,6 +173,11 @@
                 fill: var(--ogange-two);
             }
     }
+
+        .modal-js {
+            display: flex;
+        }
+
 
     .modal-movie-img {
         width: 264px;
