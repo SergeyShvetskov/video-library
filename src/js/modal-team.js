@@ -12,6 +12,7 @@ refs.openModal.addEventListener('click', onOpenModal);
 
 function onOpenModal(event) {
   event.preventDefault();
+  document.body.style.overflow = 'hidden';
   refs.modalTeam.classList.remove('is-hidden');
   renderTeamCard();
 }
@@ -55,4 +56,5 @@ function renderTeamCard() {
 
 function clearTeamCard() {
   refs.teamList.innerHTML = '';
+  document.body.style.overflow = '';
 }
