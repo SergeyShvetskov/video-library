@@ -24,7 +24,7 @@ export default class MovesApiService {
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);
-      console.error(error);
+      // console.error(error);
     }
   }
 
@@ -38,7 +38,7 @@ export default class MovesApiService {
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);
-      console.error(error);
+      // console.error(error);
     }
   }
 
@@ -52,7 +52,7 @@ export default class MovesApiService {
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);
-      console.error(error);
+      // console.error(error);
     }
   }
 
