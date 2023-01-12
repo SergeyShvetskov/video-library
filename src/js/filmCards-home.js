@@ -1,5 +1,4 @@
 import allGenres from './genres.json';
-import { modal } from './modal';
 import MovesApiService from './fetchMove';
 import { cardList } from './refs';
 
@@ -9,7 +8,6 @@ const refs = {
 };
 
 const movieInfoFetch = new MovesApiService();
-
 
 function createCard(response) {
   console.log('роблю картки createCard');
@@ -71,5 +69,3 @@ function findGenresOfMovie(ids) {
 
 export { createCard, findGenresOfMovie, refs };
 export { idMovie };
-
-

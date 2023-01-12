@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { createCard } from './func-create-cadr';
+import { createCard } from './func-create-card';
 import { fetchSearchMove, fetchTrendMoves } from './fetch';
 
 const axios = require('axios').default;

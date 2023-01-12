@@ -1,4 +1,4 @@
-import Notiflix from "notiflix";
+import Notiflix from 'notiflix';
 const axios = require('axios').default;
 
 export default class MovesApiService {
@@ -21,7 +21,6 @@ export default class MovesApiService {
     );
     try {
       const response = responseAxios.data;
-      // console.log(response);
       return response;
     } catch (error) {
       Notiflix.Notify.failure(error);

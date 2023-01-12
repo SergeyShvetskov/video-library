@@ -5,7 +5,7 @@ import './pagination.js';
 import './modal-team.js';
 import './localStorage.js';
 
-import './func-create-cadr';
+import './func-create-card';
 import './modal';
 import './to-top';
 

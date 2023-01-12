@@ -4,7 +4,7 @@ import allGenres from './genres.json';
 import { Notify } from 'notiflix';
 import Notiflix from 'notiflix';
 import { fetchSearchMove, fetchTrendMoves } from './fetch';
-import { createCard } from './func-create-cadr';
+import { createCard } from './func-create-card';
 import { inputRef } from './refs';
 
 const refs = {
