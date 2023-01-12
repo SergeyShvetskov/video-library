@@ -7,23 +7,18 @@ async function fetchTrendMoves(page = 1) {
     `${COMMON_URL}${TRENDING_FilM}?api_key=${API_KEY}&page=${page}`
   );
   try {
-    //   console.log(responseAxios);
     const response = responseAxios.data;
     return response;
   } catch (error) {
     Notiflix.Notify.failure(error);
-    //   console.error(error);
   }
 }
 async function fetchSearchMove(searchQuery, page) {
-  //   console.log(`Працює fetchSearchMove `);
   const responseAxios = await axios.get(
     `${COMMON_URL}${SEARCH_FilM}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
   );
   try {
-    //   console.log(responseAxios);
     const response = responseAxios.data;
-    // this.page += 1;
     return response;
   } catch (error) {
     Notiflix.Notify.failure(error);
