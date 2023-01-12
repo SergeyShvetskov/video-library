@@ -1,5 +1,4 @@
 import MovesApiService from './fetchMove';
-// import idMovie from './filmCards-home';
 
 const refs = {
   watchedBtn: document.querySelector('.modal-form-watched-bnt'),

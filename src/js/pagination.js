@@ -1,6 +1,5 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-// import MovesApiService from './fetchMove';
 import allGenres from './genres.json';
 import { Notify } from 'notiflix';
 import Notiflix from 'notiflix';
@@ -62,6 +61,7 @@ function loadMoreTrendMoves(event) {
     fetchSearchMove(inputRef.value, event.page)
       .then(response => {
         console.log(`response.total_results:${response.total_results}`);
+        // pagination.setTotalItems(response.response.total_results);
 
         refs.cardsList.innerHTML = '';
         createCard(response);
@@ -73,7 +73,7 @@ function loadMoreTrendMoves(event) {
         console.log(`response.total_results:${response.total_results}`);
         // let total = response.total_results;
         // if (response.total_results > 500) {
-        //   total = 500; } 
+        //   total = 500; }
         // console.log(total);
         // pagination.setTotalItems(total)
         refs.cardsList.innerHTML = '';

@@ -1,5 +1,4 @@
 import MovesApiService from './fetchMove';
-// import createCard from './filmCards-home';
 const movieFetch = new MovesApiService();
 import { posterNull } from './posterNull';
 

@@ -1,7 +1,6 @@
 import Notiflix from 'notiflix';
 import { createCard } from './func-create-cadr';
 import { fetchSearchMove, fetchTrendMoves } from './fetch';
-import { currentPage } from './pagination-new';
 
 const axios = require('axios').default;
 
