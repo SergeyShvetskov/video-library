@@ -3,112 +3,96 @@
     border-color: #ff6b08;
 }
 
-.tui-page-btn {
-    height: 40px;
-    // width: 40px;
-    // padding: 60px 0;
-    // border: none;
-    border-radius: 5px;
-}
-.tui-pagination {
+#pagination.tui-pagination {
     display: flex;
     justify-content: center;
-    margin: 0 !important;
+    margin: 0;
     padding-bottom: 100px;
 }
-.tui-pagination .tui-page-btn {
-    // text-align: center !important;
-display: flex;
-// padding: 5px 0;
-// align-items: center !important;
-align-content: center;
-    // display: block;
-    vertical-align: middle !important;
-    width: 40px !important;
-    border: none !important;
-    // font-size: 12px !important;
-    // font-weight: 500 !important
-}
-.tui-page-btn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    // padding: 0;
-    // width: 40px;
-    // border: none;
-}
-
-.tui-last,
-.tui-first {
-    display: none !important;
-}
-
-//--------------pagination-new------------
-.pagination-container {
+#pagination.tui-pagination .tui-page-btn {
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
     display: flex;
+    align-content: center;
+    vertical-align: middle;
+    border: none;
     align-items: center;
     justify-content: center;
-    align-items: center;
-
-    @media screen and (min-width: 320px) and (max-width: 768px) {
-        padding: 40px 0;
-    }
-
-    @media screen and (min-width: 768px) {
-        padding: 50px 0 60px 0;
-    }
-}
-
-.pagination-button:not(:last-child),
-.dots {
-    margin-right: 16px;
-}
-
-.pagination-button {
-    
     padding: 0;
-    background-color: var(--white);
-    border: none;
-    color: var(--black);
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.333;
 }
 
-.pagination--current {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: var(--ogange);
-    color: var(--white);
+#pagination.tui-pagination .tui-last,
+#pagination.tui-pagination .tui-first {
+    display: none;
 }
 
-.dots,
-.first-button,
-.last-button {
-    @media screen and (max-width: 767px) {
-        display: none;
-    }
-}
+// //--------------pagination-new------------
+// .pagination-container {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     align-items: center;
 
-.arrow-left,
-.arrow-right {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: var(--gray-light);
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    stroke: var(--black);
-    background-position: center;
-    background-repeat: no-repeat;
-}
+//     @media screen and (min-width: 320px) and (max-width: 768px) {
+//         padding: 40px 0;
+//     }
 
-.arrow-left {
-    color: var(--black);
-    background-image: url(../images/arrow-left.svg);
-}
+//     @media screen and (min-width: 768px) {
+//         padding: 50px 0 60px 0;
+//     }
+// }
 
-.arrow-right {
-    background-image: url(../images/arrow-right.svg);
-}
+// .pagination-button:not(:last-child),
+// .dots {
+//     margin-right: 16px;
+// }
+
+// .pagination-button {
+    
+//     padding: 0;
+//     background-color: var(--white);
+//     border: none;
+//     color: var(--black);
+//     cursor: pointer;
+//     font-weight: 500;
+//     font-size: 12px;
+//     line-height: 1.333;
+// }
+
+// .pagination--current {
+//     width: 40px;
+//     height: 40px;
+//     border-radius: 5px;
+//     background-color: var(--ogange);
+//     color: var(--white);
+// }
+
+// .dots,
+// .first-button,
+// .last-button {
+//     @media screen and (max-width: 767px) {
+//         display: none;
+//     }
+// }
+
+// .arrow-left,
+// .arrow-right {
+//     width: 40px;
+//     height: 40px;
+//     border-radius: 5px;
+//     background-color: var(--gray-light);
+//     transform: matrix(-1, 0, 0, 1, 0, 0);
+//     stroke: var(--black);
+//     background-position: center;
+//     background-repeat: no-repeat;
+// }
+
+// .arrow-left {
+//     color: var(--black);
+//     background-image: url(../images/arrow-left.svg);
+// }
+
+// .arrow-right {
+//     background-image: url(../images/arrow-right.svg);
+// }
