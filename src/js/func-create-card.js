@@ -1,20 +1,24 @@
 import { cardList } from './refs';
-import { genres} from './genres.json'
-
+import { genres } from './genres.json';
 
 function createCard(response) {
-  const linkPoster = 'https://image.tmdb.org/t/p/w400'
+  const linkPoster = 'https://image.tmdb.org/t/p/w400';
   const card = response.results
     .map(({ id, poster_path, title, release_date, genre_ids }) => {
-      if (poster_path === "" || poster_path === "null" || poster_path === null) {
-        poster_path = 'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg'
+      if (
+        poster_path === '' ||
+        poster_path === 'null' ||
+        poster_path === null
+      ) {
+        poster_path =
+          'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
       } else {
         poster_path = linkPoster + poster_path;
       }
-      
+
       return `<li class="cards__item" id="${id}">
         <a class="cards__link">
-            <img class="cards__img" src="${poster_path}" alt="${title}" loading="lazy">
+            <img class="cards__img" id="${id}" src="${poster_path}" alt="${title}" loading="lazy">
         </a>
             <div class="cards__text"><h2 class="cards__name">${getShortName(
               title
@@ -23,14 +27,11 @@ function createCard(response) {
               genre_ids
             )} | ${createYear(release_date)}</p>
             </div>
-        </li>`
-    }
-    )
+        </li>`;
+    })
     .join('');
   cardList.insertAdjacentHTML('beforeend', card);
 }
-
-
 
 function findGenresOfMovie(ids) {
   const arr = ids.flatMap(id => genres.filter(element => element.id === id));

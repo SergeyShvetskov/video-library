@@ -12,20 +12,18 @@ const movieInfoFetch = new MovesApiService();
 movieList.addEventListener('click', onClickCard);
 
 function onClickCard(e) {
+  e.preventDefault();
   document.addEventListener('keydown', closeModalEsc);
   document.addEventListener('click', closeModalClick);
   modalCloseBtn.addEventListener('click', closeModalBtnClick);
+  console.log(e.target.id);
 
-  movieInfoFetch.id = e.path[2].id;
+  movieInfoFetch.id = e.target.id;
+
   localStorage.setItem(`id-movie`, movieInfoFetch.id);
 
-  if (
-    e.path[2].id !== '' &&
-    e.path[2].id !== null &&
-    e.path[2].id !== undefined
-  ) {
+  if (e.target.id !== '' && e.target.id !== null && e.target.id !== undefined) {
     document.body.style.overflow = 'hidden';
-    // console.log(e.path[2].id);
 
     modal.classList.remove('is-hidden');
     movieList.removeEventListener('click', onClickCard);
@@ -108,7 +106,9 @@ function createModal({
       <table>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-votes">Vote / Votes</td>
-          <td class="modal-movie-data"><span class="modal-votes">${vote_average.toFixed(1)}</span> / ${vote_count}</td>
+          <td class="modal-movie-data"><span class="modal-votes">${vote_average.toFixed(
+            1
+          )}</span> / ${vote_count}</td>
         </tr>
         <tr class="modal-row">
           <td class="modal-movie-desc modal-movie-popularity">Popularity</td>
@@ -151,8 +151,8 @@ function closeModalClick(e) {
     document.body.style.overflow = '';
   }
 
-   //else if (e.path[2].classList.value === 'modal-close-btn') {
-  // else if (e.target === modalCloseBtn) { 
+  //else if (e.path[2].classList.value === 'modal-close-btn') {
+  // else if (e.target === modalCloseBtn) {
   // modal.classList.add('is-hidden');
   //   localStorage.removeItem('id-movie');
   //   localStorage.removeItem('movie-info');
@@ -162,7 +162,6 @@ function closeModalClick(e) {
   //}
   // console.log(e.target.className);
 
-  
   switch (e.target.className) {
     case 'modal-form-watched-bnt add-watched':
       createWatchedInfo();
@@ -184,17 +183,15 @@ function closeModalClick(e) {
   }
 }
 
- function closeModalBtnClick() {
-    modal.classList.add('is-hidden');
-    localStorage.removeItem('id-movie');
-    localStorage.removeItem('movie-info');
-    document.removeEventListener('click', closeModalClick);
-    document.removeEventListener('keydown', closeModalEsc);
-    modalCloseBtn.removeEventListener('click', closeModalBtnClick);
-    document.body.style.overflow = '';
-  }
-
-
+function closeModalBtnClick() {
+  modal.classList.add('is-hidden');
+  localStorage.removeItem('id-movie');
+  localStorage.removeItem('movie-info');
+  document.removeEventListener('click', closeModalClick);
+  document.removeEventListener('keydown', closeModalEsc);
+  modalCloseBtn.removeEventListener('click', closeModalBtnClick);
+  document.body.style.overflow = '';
+}
 
 function closeModalEsc(e) {
   movieList.addEventListener('click', onClickCard);

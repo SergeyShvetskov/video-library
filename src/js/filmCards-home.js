@@ -16,7 +16,7 @@ function createCard(response) {
       ({ id, poster_path, title, release_date, genre_ids }) =>
         `<li class="cards__item" id="${id}">
         <a class="cards__link">
-            <img class="cards__img" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
+            <img class="cards__img" id="${id}" src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}" loading="lazy">
         </a>
             <div class="cards__text"><h2 class="cards__name">${getShortName(
               title
