@@ -16,7 +16,7 @@ function onClickCard(e) {
   document.addEventListener('keydown', closeModalEsc);
   document.addEventListener('click', closeModalClick);
   modalCloseBtn.addEventListener('click', closeModalBtnClick);
-  console.log(e.target.id);
+  // console.log(e.target.id);
 
   movieInfoFetch.id = e.target.id;
 
